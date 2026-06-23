@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const now = new Date();
+const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
+const ROK = `${year + 1}/${String(year + 2).slice(2)}`;
+---
+<Layout
+  title="Rekrutacja"
+  description={`Rekrutacja do Młodzieżowego Liceum Ogólnokształcącego w Słupsku na rok szkolny ${ROK}. Dowiedz się jak aplikować, jakie dokumenty złożyć i kiedy są wyniki.`}
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Rekrutacja'}]}
+      label="Rekrutacja"
+      title="Dołącz do MLO"
+      sub={`Rekrutacja na rok szkolny ${ROK} jest otwarta. Sprawdź jak złożyć dokumenty.`}
+    />
+    <section class="page-sec" style="background:#f8f8f8">
+      <div class="container">
+
+        <div class="status-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" style="flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Rekrutacja {ROK} jest otwarta — złóż dokumenty i zacznij 1 września.</span>
+        </div>
+
+        <div class="rek-grid">
+
+          <!-- Lewa kolumna -->
+          <div>
+            <div class="gold-line" style="margin-bottom:.75rem">Jak aplikować?</div>
+            <h2 class="display sec-h2">3 proste kroki</h2>
+
+            <div class="steps">
+              <div class="step">
+                <div class="step-n display" aria-hidden="true">01</div>
+                <div>
+                  <div class="step-title">Zarejestruj się online</div>
+                  <div class="step-desc">Przez system Asseco Data Systems Omikron dostępny pod adresem rekrutacje-slupsk.pzo.edu.pl</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-n display" aria-hidden="true">02</div>
+                <div>
+                  <div class="step-title">Złóż dokumenty</div>
+                  <div class="step-desc">Dostarcz wymagane dokumenty osobiście lub wyślij. Sekretariat czynny Pn–Pt 9:00–14:00.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-n display" aria-hidden="true">03</div>
+                <div>
+                  <div class="step-title">Zacznij 1 września</div>
+                  <div class="step-desc">Uroczyste rozpoczęcie roku szkolnego — Twoja nowa droga się zaczyna.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:1.5rem">
+              <div style="font-size:.84rem;color:#767676;margin-bottom:.6rem">Nie wiesz który profil wybrać?</div>
+              <a href="/profile" class="cta-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                Zobacz wszystkie profile
+              </a>
+            </div>
+
+            <!-- Dokumenty -->
+            <div class="docs-box">
+              <div class="docs-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Wymagane dokumenty
+              </div>
+              {['podanie o przyjęcie do szkoły', 'świadectwo ukończenia ósmej klasy', 'zaświadczenie o wynikach egzaminu ósmoklasisty', '2 fotografie', 'inne dokumenty potwierdzające osiągnięcia uczniów'].map(d => (
+                <div class="doc-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  {d}
+                </div>
+              ))}
+
+              <!-- Pliki do pobrania -->
+              <div class="files-list">
+                <a href="/dokumenty/podanie.doc" class="file-row">
+                  <div class="file-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span class="file-ext" style="background:#2563eb">DOC</span>
+                  </div>
+                  <span class="file-label">Podanie o przyjęcie do szkoły</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="/dokumenty/regulamin.pdf" class="file-row">
+                  <div class="file-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span class="file-ext" style="background:#dc2626">PDF</span>
+                  </div>
+                  <span class="file-label">Regulamin rekrutacji do szkoły MLO</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prawa kolumna — karta kontaktowa -->
+          <div class="contact-sticky">
+            <div class="contact-card">
+              <div class="contact-card-header">
+                <div class="contact-card-dots"></div>
+                <div style="position:relative">
+                  <div class="contact-card-label">Rok szkolny</div>
+                  <div class="display contact-card-rok">{ROK}</div>
+                </div>
+              </div>
+              <div class="contact-card-body">
+                <div class="contact-row">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <div>
+                    <div class="contact-row-label">Adres</div>
+                    <div class="contact-row-val">ul. Wojska Polskiego 46A<br/>76-200 Słupsk</div>
+                  </div>
+                </div>
+                <div class="contact-row">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                  <div>
+                    <div class="contact-row-label">Telefon 1</div>
+                    <div class="contact-row-val">+48 786 933 376</div>
+                  </div>
+                </div>
+                <div class="contact-row">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                  <div>
+                    <div class="contact-row-label">Telefon 2</div>
+                    <div class="contact-row-val">+48 505 525 119</div>
+                  </div>
+                </div>
+                <div class="contact-row">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <div>
+                    <div class="contact-row-label">E-mail</div>
+                    <a href="mailto:liceum.nauka@wp.pl" class="contact-row-email">liceum.nauka@wp.pl</a>
+                  </div>
+                </div>
+                <div class="contact-row">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <div>
+                    <div class="contact-row-label">Sekretariat</div>
+                    <div class="contact-row-val">Pn–Pt: 9:00–14:00</div>
+                  </div>
+                </div>
+                <div class="contact-row" style="border-bottom:none">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <div>
+                    <div class="contact-row-label">Nauka</div>
+                    <div class="contact-row-val">4 lata · liceum ogólnokształcące</div>
+                  </div>
+                </div>
+                <a href="tel:+48786933376" class="call-btn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+                  Zadzwoń teraz
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style is:global>
+.rek-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:5rem;align-items:start}
+@media(max-width:768px){.rek-grid{grid-template-columns:1fr!important;gap:2.5rem!important}}
+.page-sec{padding:5rem 2rem}
+@media(max-width:1024px){.page-sec{padding:3.5rem 1.25rem}}
+.container{max-width:1400px;margin:0 auto}
+
+
+
+.status-bar{display:flex;align-items:center;gap:10px;background:#f0fdf4;border:1.5px solid #a7f3d0;border-radius:12px;padding:.8rem 1.5rem;margin-bottom:4rem;font-weight:600;font-size:.88rem;color:#065f46;width:100%}
+50%{opacity:.4}}
+.gold-line{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#01214F}
+.sec-h2{font-size:clamp(1.8rem,3vw,3rem);color:#01214F;font-weight:800;margin-bottom:2.5rem}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:1.5rem;padding:1.75rem 0;border-bottom:1.5px solid #ebebeb}
+.step-n{font-size:3rem;font-weight:800;color:#f0e8d8;line-height:1;flex-shrink:0;width:54px}
+.step-title{font-weight:700;font-size:1rem;color:#01214F;margin-bottom:.3rem}
+.step-desc{font-size:.87rem;color:#767676;line-height:1.65}
+.cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#01214F;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:1rem;border-radius:12px;transition:opacity .2s;width:100%;box-shadow:0 4px 16px rgba(1,33,79,.2)}
+.cta-btn:hover{opacity:.85}
+.docs-box{background:#fff;border:1.5px solid #f0f0f0;border-radius:16px;padding:2rem;margin-top:2rem}
+.docs-title{font-weight:700;font-size:.88rem;color:#01214F;margin-bottom:1rem;display:flex;align-items:center;gap:7px}
+.doc-row{display:flex;align-items:center;gap:10px;padding:.55rem 0;border-bottom:1px solid #f5f5f5;font-size:.88rem;color:#444}
+.doc-row:last-of-type{border-bottom:none}
+.files-list{margin-top:1.25rem;display:flex;flex-direction:column;gap:.5rem}
+.file-row{display:flex;align-items:center;gap:10px;padding:.75rem 1rem;background:#f8f8f8;border-radius:10px;text-decoration:none;color:inherit;transition:background .2s}
+.file-row:hover{background:#f0f0f0}
+.file-icon-wrap{position:relative;flex-shrink:0;width:32px;display:flex;align-items:center;justify-content:center}
+.file-ext{position:absolute;bottom:-3px;right:-5px;color:#fff;font-size:.42rem;font-weight:800;padding:.1rem .25rem;border-radius:2px}
+.file-label{flex:1;font-weight:600;font-size:.85rem;color:#01214F}
+.contact-sticky{}
+.contact-card{background:#fff;border:1.5px solid #ebebeb;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(1,33,79,.08)}
+.contact-card-header{background:linear-gradient(135deg,#01214F,#1a3570);padding:2rem 2.5rem;position:relative;overflow:hidden}
+.contact-card-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(226,166,45,.15) 1.5px,transparent 1.5px);background-size:24px 24px;pointer-events:none}
+.contact-card-label{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.3rem}
+.contact-card-rok{font-size:2.8rem;font-weight:800;color:#fff;line-height:1}
+.contact-card-body{padding:2rem 2.5rem}
+.contact-row{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid #f5f5f5}
+.contact-row-label{font-size:.62rem;color:#767676;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem}
+.contact-row-val{font-size:.9rem;color:#01214F;font-weight:500}
+.contact-row-email{font-size:.9rem;color:#01214F;font-weight:600;text-decoration:none}
+.call-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1.5rem;background:#E2A62D;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:1.1rem;border-radius:12px;box-shadow:0 4px 16px rgba(226,166,45,.4);transition:opacity .2s}
+.call-btn:hover{opacity:.88}
+
+@media print{}
+</style>

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Blokuj niepotrzebne ścieżki
+Disallow: /api/
+Disallow: /_astro/
+
+# Sitemap
+Sitemap: https://mlo.slupsk.pl/sitemap-index.xml
+Sitemap: https://mlo.slupsk.pl/sitemap.xml
+
+# Cloudflare
+Host: mlo.slupsk.pl

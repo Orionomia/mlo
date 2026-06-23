@@ -1,0 +1,287 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { PROFILES } from '../../data';
+
+export function getStaticPaths() {
+  return PROFILES.map((p) => ({
+    params: { slug: p.slug },
+    props: { profile: p },
+  }));
+}
+
+const { profile: p } = Astro.props;
+---
+<Layout title={p.title} description={p.desc}>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Profile klas',href:'/profile'},{label:p.title}]}
+      label={`Profil ${p.num}`}
+      title={p.title}
+      sub={p.sub}
+      badge={p.badge ? 'Klasa mundurowa' : undefined}
+    />
+    <section class="sec">
+      <div class="container">
+
+        <a href="/profile" class="back-btn">← Wróć do wszystkich profili</a>
+
+        <div class="r-grid">
+
+          <!-- Lewa kolumna -->
+          <div>
+            <div class="pc-box" style={`background:${p.pale};border-color:${p.color}22`}>
+              <div class="pc-icon-wrap" style={`box-shadow:0 4px 14px ${p.color}25`}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={p.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={p.iconPath}/>
+              </div>
+              {p.badge && <div class="badge-mundurowa">Klasa mundurowa</div>}
+              <h1 class="display pc-title">{p.title}</h1>
+              <p class="pc-sub" style={`color:${p.color}`}>{p.sub}</p>
+            </div>
+
+            <!-- Przedmioty -->
+            <div class="card">
+              <div class="card-label">Przedmioty w klasie</div>
+              {p.items.map((s: string) => (
+                <div class="card-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  {s}
+                </div>
+              ))}
+            </div>
+
+            <!-- Perspektywy -->
+            <div class="card">
+              <div class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                Perspektywy zawodowe
+              </div>
+              {p.career.map((c: string) => (
+                <div class="card-row">
+                  <div class="dot" style="background:#E2A62D"></div>
+                  {c}
+                </div>
+              ))}
+            </div>
+
+            <!-- Uczelnie -->
+            <div class="card">
+              <div class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                Przykładowe uczelnie
+              </div>
+              {p.unis.map((u: string) => (
+                <div class="card-row">
+                  <div class="dot" style="background:#2563eb"></div>
+                  {u}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Prawa kolumna -->
+          <div>
+            <div class="profile-cta-card">
+              <div class="profile-cta-label">O profilu</div>
+              <h2 class="profile-cta-title">Czego się nauczysz?</h2>
+              <p class="profile-cta-desc">{p.desc}</p>
+              <div class="profile-cta-divider"></div>
+              <div class="profile-cta-sub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                Po ukończeniu profilu
+              </div>
+              <p class="profile-cta-after">{p.badge ? 'Absolwenci klas mundurowych trafiają bezpośrednio do służb lub kontynuują edukację na akademiach. Profil daje realną przewagę.' : 'Absolwenci kontynuują naukę na wybranych kierunkach studiów. Profil zapewnia szeroki wachlarz możliwości.'}</p>
+              <a href="/rekrutacja" class="profile-cta-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                Aplikuj do tego profilu
+              </a>
+            </div>
+
+            <div class="pc-info-right">
+              {p.slug === "profil-wojskowy" && (
+                <>
+              <div style="background:#01214F;border:1.5px solid #01214F;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#E2A62D">Patronat</div>
+                <div style="font-size:.86rem;line-height:1.6;color:rgba(255,255,255,.8)">Centrum Szkolenia Marynarki Wojennej w Ustce oraz Wojskowy Komendant Uzupełnień w Słupsku. Uczniowie szkolą się z zawodowymi żołnierzami na specjalistycznym sprzęcie.</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Strzelnictwo i taktyka wojskowa · Terenoznawstwo i nawigacja · Musztra i ceremoniał · Ratownictwo medyczne · Survival i samoobrona</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Umundurowanie</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Mundur obowiązkowy 3× w tygodniu oraz podczas obozów, zajęć w jednostkach wojskowych i uroczystości państwowych.</div>
+              </div>
+                </>
+              )}
+              {p.slug === "profil-policyjny" && (
+                <>
+              <div style="background:#01214F;border:1.5px solid #01214F;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#E2A62D">Patronat</div>
+                <div style="font-size:.86rem;line-height:1.6;color:rgba(255,255,255,.8)">Lokalne jednostki Policji, Szkoła Policji oraz eksperci kryminalistyki. Zajęcia prowadzą doświadczeni funkcjonariusze.</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Prawo karne i procedury · Strzelectwo i samoobrona · Mustra i ceremoniał · Systemy GIS · Kryminalistyka · Symulacje akcji policyjnych</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Umundurowanie</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Mundur obowiązkowy 3× w tygodniu oraz podczas wizyt w Szkole Policji, obozów i uroczystości państwowych.</div>
+              </div>
+                </>
+              )}
+              {p.slug === "profil-pozarniczy" && (
+                <>
+              <div style="background:#01214F;border:1.5px solid #01214F;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#E2A62D">Patronat</div>
+                <div style="font-size:.86rem;line-height:1.6;color:rgba(255,255,255,.8)">Ośrodek Szkolenia PSP w Słupsku. Zajęcia specjalistyczne prowadzą czynni strażacy — praktycy z pierwszej linii walki z żywiołem.</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Taktyka gaśnicza · Ratownictwo techniczne i wysokościowe · Kwalifikowana pierwsza pomoc · Obsługa sprzętu PSP · Działania podczas katastrof</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Umundurowanie</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Mundur obowiązkowy podczas zajęć specjalistycznych, obozów i uroczystości. Element kształtowania dyscypliny i identyfikacji ze służbą.</div>
+              </div>
+                </>
+              )}
+              {p.slug === "profil-ogolny" && (
+                <>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Zrównoważony program z kluczowych przedmiotów · Fakultety zgodne z zainteresowaniami · Projekty interdyscyplinarne · Rozwijanie kompetencji miękkich</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Wsparcie</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Indywidualne konsultacje z doradcą zawodowym i psychologiem. Pomagamy odkryć predyspozycje i zainteresowania przed wyborem kierunku studiów.</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10s3-3 3-8h14c0 5 3 8 3 8"/><path d="M6 15s1.5 2 6 2 6-2 6-2"/><path d="M14 8h.01"/><path d="M10 8h.01"/><path d="M2 10v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Kultura i rozwój</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Wyjścia do teatrów, kin i muzeów · Spotkania autorskie · Konkursy recytatorskie · Projekty czytelnicze</div>
+              </div>
+                </>
+              )}
+              {p.slug === "profil-humanistyczny" && (
+                <>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Język polski rozszerzony · Historia rozszerzona · Wiedza o społeczeństwie · Debaty i olimpiady · Projekty badawcze i społeczne</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10s3-3 3-8h14c0 5 3 8 3 8"/><path d="M6 15s1.5 2 6 2 6-2 6-2"/><path d="M14 8h.01"/><path d="M10 8h.01"/><path d="M2 10v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Doświadczenia</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Wyjścia do teatrów i muzeów · Spotkania z pisarzami i dziennikarzami · Warsztaty dziennikarskie</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Umiejętności</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Analiza i interpretacja tekstów · Sztuka argumentacji · Krytyczne myślenie · Efektywna komunikacja · Wrażliwość kulturowa</div>
+              </div>
+                </>
+              )}
+              {p.slug === "profil-psychologiczny" && (
+                <>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Biologia z neurobiologią · Podstawy psychologii i socjologii · Filozofia · Arteterapia · Psychologia pozytywna · Projekty badawcze</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Doświadczenia</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Wizyty w placówkach terapeutycznych i resocjalizacyjnych · Spotkania z psychologami i terapeutami · Wolontariat · Warsztaty eksperymentalne</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Umiejętności</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Empatia i aktywne słuchanie · Rozumienie emocji · Rozwiązywanie konfliktów · Analiza zachowań · Zarządzanie stresem</div>
+              </div>
+                </>
+              )}
+              {p.slug === "profil-filmowo-aktorski" && (
+                <>
+              <div style="background:#01214F;border:1.5px solid #01214F;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10s3-3 3-8h14c0 5 3 8 3 8"/><path d="M6 15s1.5 2 6 2 6-2 6-2"/><path d="M14 8h.01"/><path d="M10 8h.01"/><path d="M2 10v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#E2A62D">Partnerzy</div>
+                <div style="font-size:.86rem;line-height:1.6;color:rgba(255,255,255,.8)">Teatr Nowy i Teatr Rondo w Słupsku oraz lokalne studia filmowe. Uczniowie obserwują profesjonalistów przy pracy i uczestniczą w warsztatach scenicznych.</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Program zajęć</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Emisja głosu i dykcja · Pisanie scenariuszy · Montaż i edycja dźwięku · Sceniczne formy taneczne · Warsztaty aktorskie · Wiedza o kulturze</div>
+              </div>
+              <div style="background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.6rem">
+                <div style="color:#E2A62D"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#01214F">Umiejętności</div>
+                <div style="font-size:.86rem;line-height:1.6;color:#555">Pewność siebie i wystąpienia publiczne · Ekspresja i świadomość ciała · Kreatywność · Praca zespołowa · Produkcja multimedialna</div>
+              </div>
+                </>
+              )}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style is:global>
+.sec{background:#f8f8f8;padding:5rem 2rem}
+.container{max-width:1400px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#f5f5f5;border:1.5px solid #e8e8e8;color:#666;font-size:.78rem;font-weight:600;padding:.5rem 1rem;border-radius:8px;text-decoration:none;transition:all .2s;margin-bottom:2.5rem}
+.back-btn:hover{color:#01214F;border-color:#01214F}
+.r-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3.5rem;align-items:start}
+.pc-box{border:1.5px solid;border-radius:20px;padding:2.5rem;margin-bottom:1.25rem}
+.pc-icon-wrap{width:52px;height:52px;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.badge-mundurowa{display:inline-block;background:#fff3e0;border:1.5px solid #01214F33;border-radius:100px;padding:.18rem .7rem;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#01214F;margin-bottom:.75rem}
+.pc-title{font-size:2.5rem;font-weight:800;color:#01214F;line-height:1;margin-bottom:.4rem}
+.pc-sub{font-size:.9rem;font-weight:600}
+.card{background:#fafafa;border:1.5px solid #ebebeb;border-radius:16px;padding:2rem;margin-bottom:1rem}
+.card-label{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#01214F;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:2px solid #E2A62D33}
+.card-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:#01214F;margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.card-row{display:flex;align-items:center;gap:10px;padding:.65rem 0;border-bottom:1px solid #f0f0f0;font-size:.93rem;color:#333}
+.card-row:last-child{border-bottom:none}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.gold-line{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#01214F}
+.sec-h2{font-size:clamp(1.8rem,3vw,2.8rem);color:#01214F;font-weight:800;margin-bottom:1.25rem}
+.sec-desc{font-size:1.02rem;line-height:1.85;color:#666;margin-bottom:2rem}
+.info-box{background:#f8f8f8;border:1.5px solid #f0f0f0;border-radius:16px;padding:1.75rem;margin-bottom:1.5rem}
+.info-box-title{font-weight:700;font-size:.9rem;color:#01214F;margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.info-box-text{font-size:.88rem;color:#767676;line-height:1.75}
+.cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#01214F;color:#fff;border:none;padding:1.1rem;border-radius:12px;font-weight:700;font-size:.95rem;box-shadow:0 6px 24px rgba(1,33,79,.2);transition:all .2s;text-decoration:none}
+.cta-btn:hover{background:#E2A62D}
+@media(max-width:1024px){.r-grid{grid-template-columns:1fr;gap:2.5rem}.sec{padding:3.5rem 1.25rem}}
+.pc-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+@media(max-width:768px){.pc-info-grid{grid-template-columns:1fr}}
+
+.profile-cta-card{background:#01214F;border-radius:20px;padding:2.5rem;margin-bottom:1.25rem}
+.profile-cta-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#E2A62D;margin-bottom:.75rem}
+.profile-cta-title{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:800;color:#fff;margin-bottom:.75rem;line-height:1.2}
+.profile-cta-desc{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:1.25rem}
+.profile-cta-divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:1.25rem}
+.profile-cta-sub{display:flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#E2A62D;margin-bottom:.5rem}
+.profile-cta-after{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:1.75rem}
+.profile-cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#E2A62D;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:1rem 1.5rem;border-radius:12px;transition:opacity .2s}
+.profile-cta-btn:hover{opacity:.88}
+.pc-info-right{display:flex;flex-direction:column;gap:1rem}
+.pc-info-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+</style>

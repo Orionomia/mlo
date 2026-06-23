@@ -1,0 +1,74 @@
+{
+  "name": "MLO Słupsk – Młodzieżowe Liceum Ogólnokształcące",
+  "short_name": "MLO Słupsk",
+  "description": "Młodzieżowe Liceum Ogólnokształcące w Słupsku – 7 profili klas, klasy mundurowe, rekrutacja 2025/2026",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#01214F",
+  "theme_color": "#01214F",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "lang": "pl",
+  "shortcuts": [
+    {
+      "name": "Rekrutacja",
+      "short_name": "Rekrutacja",
+      "url": "/rekrutacja",
+      "icons": [
+        {
+          "src": "/favicon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "url": "/kontakt",
+      "icons": [
+        {
+          "src": "/favicon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Podręczniki",
+      "short_name": "Podręczniki",
+      "url": "/podreczniki",
+      "icons": [
+        {
+          "src": "/favicon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kalendarz",
+      "short_name": "Kalendarz",
+      "url": "/kalendarz",
+      "icons": [
+        {
+          "src": "/favicon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

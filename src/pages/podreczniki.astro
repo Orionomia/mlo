@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Podreczniki from '../components/Podreczniki';
+---
+<Layout title="Podręczniki" description="Wykaz podręczników MLO Słupsk na rok szkolny 2025/2026. Spisy podręczników dla klas 1–4 do pobrania w formacie PDF." keywords="podręczniki MLO Słupsk, lista podręczników liceum Słupsk 2025, materiały szkolne">
+  <Navbar />
+  <main>
+    <PageHeader
+      breadcrumbs={[{'label':'Start','href':'/'},{'label':'Podręczniki'}]} label="Podręczniki i dokumenty" title="Wykaz 2025/2026" sub="Spisy podręczników dla klas I–IV do pobrania w formacie PDF." />
+    <section class="sec">
+      <div class="container">
+        <div class="note-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+Lista dotyczy roku szkolnego 2025/2026. Pytania? <a href="tel:+48786933376" style="color:#01214F;font-weight:700;text-decoration:none;white-space:nowrap">+48 786 933 376</a> lub <a href="mailto:liceum.nauka@wp.pl" style="color:#01214F;font-weight:700;text-decoration:none;white-space:nowrap">liceum.nauka@wp.pl</a>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+      </div>
+      <Podreczniki client:load />
+      </div>
+    </section>
+  </main>
+  <Footer />
+<script>
+  // Rok szkolny (auto)
+  function getRokSzkolny(){
+    const d=new Date(), y=d.getFullYear(), m=d.getMonth()+1;
+    return m>=9 ? `${y}/${y+1}` : `${y-1}/${y}`;
+  }
+  const ROK = getRokSzkolny();
+  // Update all elements with data-rok attribute
+  document.querySelectorAll('[data-rok]').forEach(el => {
+    el.textContent = el.dataset.rok === 'end'
+      ? new Date().getFullYear()
+      : ROK;
+  });
+</script>
+</Layout>
+<style>
+.sec{background:#f8f8f8;padding:5rem 2rem}
+.container{max-width:1400px;margin:0 auto}
+.note-box{background:#fff3e0;border:1.5px solid #E2A62D33;border-radius:12px;padding:1.1rem 1.5rem;margin-bottom:2rem;font-size:.88rem;color:#01214F;display:flex;gap:10px;align-items:center;line-height:1.65;flex-wrap:wrap}
+.note-box a{color:#01214F}
+@media(max-width:768px){.sec{padding:3.5rem 1.25rem}}
+
+/* Responsive table */
+@media(max-width:768px){
+  .books-table-row, .books-table-head {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .books-table-row > div:nth-child(3),
+  .books-table-head > div:nth-child(3) { grid-column: 1 / -1; }
+  .books-table-row > div:nth-child(4),
+  .books-table-head > div:nth-child(4) { display: none; }
+}
+@media print{}
+</style>

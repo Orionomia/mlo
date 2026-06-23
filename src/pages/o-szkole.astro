@@ -1,0 +1,177 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<Layout
+  title="O szkole"
+  description="Młodzieżowe Liceum Ogólnokształcące w Słupsku. Od 1997 roku — przyjazna szkoła z 7 profilami klas, 3 klasami mundurowym i współpracą z Policją, Wojskiem i Strażą Pożarną."
+  keywords="o szkole MLO Słupsk, liceum Słupsk historia, klasy mundurowe Słupsk, szkoła specjalne potrzeby edukacyjne Słupsk"
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{'label':'Start','href':'/'},{'label':'O Szkole'}]} label="O Szkole" title="Kształcimy liderów" sub="Od 1997 roku łączymy solidną edukację z praktycznym przygotowaniem do kariery — w przyjaznej, rodzinnej atmosferze." />
+
+    <section class="page-sec" style="background:#fff">
+      <div style="max-width:1400px;margin:0 auto;display:flex;flex-direction:column;gap:4rem">
+
+        <!-- Wstęp + fakty -->
+        <div class="r-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start">
+          <div>
+            <div class="gold-line" style="margin-bottom:.75rem">Nasza historia</div>
+            <h2 class="display sec-h2">Kim jesteśmy?</h2>
+            <p class="body-text">Młodzieżowe Liceum Ogólnokształcące w Słupsku to przyjazna placówka o charakterze rodzinnym — znamy każdego ucznia z imienia. Działamy nieprzerwanie od 1997 roku.</p>
+            <p class="body-text">Pod okiem doświadczonej kadry pedagogicznej przygotujesz się nie tylko do matury, ale również do służby w Policji, Wojsku czy Straży Pożarnej — a także do studiów na uczelniach wojskowych i cywilnych.</p>
+            <p class="body-text">Szkoła jest przystosowana dla uczniów ze specjalnymi potrzebami edukacyjnymi (opinie, orzeczenia). Każdy uczeń otrzymuje indywidualne wsparcie pedagogiczne.</p>
+            <div class="quote-box">
+              <div class="quote-text">"Z nami zdobędziesz wiedzę i umiejętności niezbędne do tego, by wykonywać zawód swoich marzeń."</div>
+              <div class="quote-sub">— motto MLO Słupsk</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div class="fact-card">
+              <div class="fact-icon" style="background:#fff3e0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <div class="fact-body">
+                <div class="fact-label">Rok założenia</div>
+                <div class="fact-value">1997</div>
+                <div class="fact-desc">Ponad 25 lat doświadczenia w edukacji</div>
+              </div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon" style="background:#eff6ff">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div class="fact-body">
+                <div class="fact-label">Profile klas</div>
+                <div class="fact-value">7</div>
+                <div class="fact-desc">Ogólny, humanistyczny, psychologiczny, filmowo-aktorski i 3 mundurowe</div>
+              </div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon" style="background:#ecfdf5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="fact-body">
+                <div class="fact-label">Klasy mundurowe</div>
+                <div class="fact-value">3</div>
+                <div class="fact-desc">Policyjny, wojskowy i pożarniczy — współpraca ze służbami</div>
+              </div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon" style="background:#f5f3ff">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="fact-body">
+                <div class="fact-label">Charakter szkoły</div>
+                <div class="fact-value">Rodzinny</div>
+                <div class="fact-desc">Małe, przyjazne klasy — każdy uczeń jest ważny</div>
+              </div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-icon" style="background:#fef2f2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="fact-body">
+                <div class="fact-label">Lokalizacja</div>
+                <div class="fact-value">Centrum Słupska</div>
+                <div class="fact-desc">ul. Wojska Polskiego 46A — dobry dojazd komunikacją miejską</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Współpraca ze służbami -->
+        <div>
+          <div class="gold-line" style="margin-bottom:.75rem">Partnerzy</div>
+          <h2 class="display sec-h2">Współpraca ze służbami</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="svc-icon" style="background:#ecfdf5">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="svc-title">Policja Pomorska</div>
+              <p class="svc-desc">Klasa policyjna realizowana we współpracy z Komendą Policji. Uczniowie poznają realia służby od praktykujących funkcjonariuszy.</p>
+            </div>
+            <div class="service-card">
+              <div class="svc-icon" style="background:#f8fafc">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <div class="svc-title">Wojsko Polskie</div>
+              <p class="svc-desc">Klasa wojskowa prowadzona z udziałem żołnierzy zawodowych. Przygotowanie do służby i studiów na uczelniach wojskowych.</p>
+            </div>
+            <div class="service-card">
+              <div class="svc-icon" style="background:#fef2f2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+              </div>
+              <div class="svc-title">Straż Pożarna PSP Słupsk</div>
+              <p class="svc-desc">Klasa pożarnicza we współpracy z PSP Słupsk. Ratownictwo medyczne i techniki gaśnicze realizowane w praktyce.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wartości -->
+        <div style="background:#f8f8f8;border-radius:20px;padding:3rem">
+          <div class="gold-line" style="margin-bottom:.75rem">Nasze wartości</div>
+          <h2 class="display sec-h2">Co nas wyróżnia?</h2>
+          <div class="values-grid">
+            {[
+              {title:"Pasja", desc:"Uczymy z pasją — bo tylko tak można zarazić nią uczniów.", color:"#dc2626"},
+              {title:"Profesjonalizm", desc:"Wykwalifikowana kadra i eksperci ze służb oraz uczelni.", color:"#E2A62D"},
+              {title:"Otwartość", desc:"Otwieramy drzwi do różnych ścieżek kariery i kierunków studiów.", color:"#2563eb"},
+              {title:"Innowacyjność", desc:"Nowoczesne metody nauczania i praktyczne podejście do wiedzy.", color:"#7c3aed"},
+              {title:"Odpowiedzialność", desc:"Inwestujemy w przyszłość każdego ucznia indywidualnie.", color:"#059669"},
+            ].map(v => (
+              <div class="value-item">
+                <div class="value-dot" style={`background:${v.color}`}></div>
+                <div>
+                  <div class="value-title">{v.title}</div>
+                  <div class="value-desc">{v.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.sec-h2{font-size:clamp(2rem,3.5vw,3rem);color:#01214F;font-weight:800;margin-bottom:1.5rem}
+.body-text{font-size:1rem;line-height:1.85;color:#555;margin-bottom:1rem}
+.quote-box{background:#01214F;border-radius:16px;padding:2.5rem;margin-top:1.5rem;position:relative;overflow:hidden}
+.quote-text{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.4rem;color:#E2A62D;margin-bottom:.75rem;line-height:1.4;position:relative}
+.quote-sub{font-size:.8rem;color:rgba(255,255,255,.35);position:relative}
+.fact-card{background:#fff;border:1.5px solid #ebebeb;border-radius:14px;padding:1.25rem 1.5rem;display:flex;gap:1rem;align-items:center}
+.fact-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fact-label{font-size:.72rem;color:#767676;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.1rem}
+.fact-value{font-weight:800;font-size:1.05rem;color:#01214F;line-height:1.1}
+.fact-desc{font-size:.78rem;color:#767676;margin-top:.15rem;line-height:1.4}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service-card{background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:2rem}
+.svc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.svc-title{font-weight:700;font-size:1rem;color:#01214F;margin-bottom:.5rem}
+.svc-desc{font-size:.85rem;color:#767676;line-height:1.65;margin:0}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem}
+.value-item{display:flex;gap:1rem;align-items:flex-start}
+.value-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.35rem}
+.value-title{font-weight:700;font-size:.9rem;color:#01214F;margin-bottom:.2rem}
+.value-desc{font-size:.82rem;color:#767676;line-height:1.5}
+@media(max-width:768px){
+  .r-grid{grid-template-columns:1fr!important;gap:2.5rem}
+  .services-grid{grid-template-columns:1fr}
+  
+
+
+  .values-grid{grid-template-columns:1fr 1fr}
+  div[style*="padding:3rem"]{padding:2rem!important}
+}
+.page-sec{padding:5rem 2rem}
+@media(max-width:1024px){.page-sec{padding:3.5rem 1.25rem}}
+</style>

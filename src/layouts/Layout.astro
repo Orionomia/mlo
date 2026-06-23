@@ -1,0 +1,201 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+  pageType?: 'website' | 'article';
+  noIndex?: boolean;
+}
+
+const SITE_URL = 'https://mlo.slupsk.pl';
+const SITE_NAME = 'MLO Słupsk – Młodzieżowe Liceum Ogólnokształcące w Słupsku';
+const DEFAULT_DESC = 'Młodzieżowe Liceum Ogólnokształcące w Słupsku. 7 profili klas: ogólny, humanistyczny, psychologiczny, filmowo-aktorski, policyjny, wojskowy, pożarniczy. Rekrutacja 2026/2027 otwarta.';
+const DEFAULT_KW = 'MLO Słupsk, Młodzieżowe Liceum Ogólnokształcące Słupsk, liceum Słupsk, klasy mundurowe Słupsk, klasa policyjna Słupsk, klasa wojskowa Słupsk, klasa pożarnicza Słupsk, klasa ogólna Słupsk, szkoła ponadpodstawowa Słupsk, rekrutacja liceum Słupsk 2025 2026';
+const DEFAULT_OG = `${SITE_URL}/og-image.jpg`;
+
+const {
+  title = SITE_NAME,
+  description = DEFAULT_DESC,
+  keywords = DEFAULT_KW,
+  ogImage = DEFAULT_OG,
+  canonical = Astro.url.href,
+  pageType = 'website',
+  noIndex = false,
+} = Astro.props;
+
+const fullTitle = title === SITE_NAME ? title : `${title} | MLO Słupsk`;
+---
+
+<!doctype html>
+<html lang="pl" dir="ltr">
+  <head>
+    <style>
+      @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-v40-latin-700.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-v40-latin-800.woff2') format('woff2');
+        font-weight: 800;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-v40-latin-regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Playfair Display';
+        src: url('/fonts/playfair-display-v40-latin-700italic.woff2') format('woff2');
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        src: url('/fonts/space-grotesk-v22-latin-regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        src: url('/fonts/space-grotesk-v22-latin-500.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        src: url('/fonts/space-grotesk-v22-latin-600.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        src: url('/fonts/space-grotesk-v22-latin-700.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- ── Primary SEO ── -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Orionomia | Digital infrastructure for scholarly publishing" />
+    <meta name="robots" content={noIndex ? 'noindex,nofollow' : 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1'} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- ── Geographic & Language ── -->
+    <meta name="geo.region" content="PL-PM" />
+    <meta name="geo.placename" content="Słupsk" />
+    <meta name="geo.position" content="54.464;17.029" />
+    <meta name="ICBM" content="54.464, 17.029" />
+    <link rel="alternate" hreflang="pl" href={SITE_URL} />
+
+    <!-- ── Open Graph ── -->
+    <meta property="og:type" content={pageType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="MLO Słupsk" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MLO Słupsk – Młodzieżowe Liceum Ogólnokształcące" />
+    <meta property="og:locale" content="pl_PL" />
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- ── Favicon ── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="msapplication-TileImage" content="/favicon-192.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#01214F" />
+    <meta name="color-scheme" content="light" />
+    <meta name="msapplication-TileColor" content="#01214F" />
+
+    <!-- ── Preconnect fonts ── -->
+
+    <!-- ── Structured Data – Organization ── -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Młodzieżowe Liceum Ogólnokształcące w Słupsku",
+        "alternateName": "MLO Słupsk",
+        "url": SITE_URL,
+        "logo": `${SITE_URL}/favicon.svg`,
+        "image": ogImage,
+        "description": DEFAULT_DESC,
+        "foundingDate": "1997",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ul. Wojska Polskiego 46A",
+          "addressLocality": "Słupsk",
+          "postalCode": "76-200",
+          "addressCountry": "PL",
+        },
+        "telephone": ["+48786933376", "+48505525119"],
+        "email": "liceum.nauka@wp.pl",
+        "sameAs": ["https://www.facebook.com/mlo.slupsk"],
+        "hasMap": "https://maps.google.com/?q=ul.+Wojska+Polskiego+46A,+76-200+Słupsk",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "14:00",
+        },
+      })}
+    </script>
+    <style>
+    .gold-line{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#01214F}
+    .gold-line::before{content:'';display:block;width:28px;height:2px;background:#E2A62D;border-radius:1px}
+  </style>
+</head>
+
+  <body>
+  <a href="#main-content" class="skip-link">Przejdź do treści głównej</a>
+    <slot />
+  
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

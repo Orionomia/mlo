@@ -1,0 +1,81 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+interface Props {
+  items: BreadcrumbItem[];
+}
+const { items } = Astro.props;
+
+// Structured data for Google
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": item.label,
+    ...(item.href ? { "item": `https://mlo.slupsk.pl${item.href}` } : {})
+  }))
+};
+---
+
+<nav aria-label="Ścieżka nawigacji" class="breadcrumbs">
+  <ol class="bc-list">
+    {items.map((item, i) => (
+      <li class="bc-item">
+        {i > 0 && <span class="bc-sep" aria-hidden="true">›</span>}
+        {item.href
+          ? <a href={item.href} class="bc-link">{item.label}</a>
+          : <span class="bc-current" aria-current="page">{item.label}</span>
+        }
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<style>
+.breadcrumbs {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: .6rem 2rem;
+}
+.bc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .25rem;
+}
+.bc-item {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+.bc-sep {
+  color: rgba(255,255,255,.3);
+  font-size: .8rem;
+  margin: 0 .1rem;
+}
+.bc-link {
+  font-size: .75rem;
+  color: rgba(255,255,255,.5);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+.bc-link:hover { color: #E2A62D; }
+.bc-current {
+  font-size: .75rem;
+  color: rgba(255,255,255,.85);
+  font-weight: 600;
+}
+@media(max-width:768px) {
+  .breadcrumbs { padding: .5rem 1.25rem; }
+}
+</style>

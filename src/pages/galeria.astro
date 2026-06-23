@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Auto-generate gallery from folder structure
+const galeriaPath = path.join(process.cwd(), 'public/galeria');
+let events: {slug: string; title: string; cover: string; count: number; date: string}[] = [];
+
+if (fs.existsSync(galeriaPath)) {
+  const folders = fs.readdirSync(galeriaPath)
+    .filter(f => fs.statSync(path.join(galeriaPath, f)).isDirectory())
+    .sort()
+    .reverse(); // newest first
+
+  events = folders.map(folder => {
+    const folderPath = path.join(galeriaPath, folder);
+    const files = fs.readdirSync(folderPath)
+      .filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
+
+    // Generate title from folder name: 2026-06-bal-maturalny → Bal Maturalny
+    const parts = folder.split('-');
+    const year = parts[0];
+    const month = parts[1];
+    const words = parts.slice(2).map(w => w.charAt(0).toUpperCase() + w.slice(1));
+    const titleMap: Record<string, string> = {
+      'wycieczka-gdansk': 'Wycieczka Gdańsk',
+      'bal-maturalny': 'Bal Maturalny',
+      'dzien-sportu': 'Dzień Sportu',
+      'rozpoczecie-roku': 'Rozpoczęcie Roku',
+    };
+    const folderKey = parts.slice(2).join('-');
+    const title = titleMap[folderKey] || words.join(' ');
+
+    // Month names
+    const months: Record<string, string> = {
+      '01':'Styczeń','02':'Luty','03':'Marzec','04':'Kwiecień',
+      '05':'Maj','06':'Czerwiec','07':'Lipiec','08':'Sierpień',
+      '09':'Wrzesień','10':'Październik','11':'Listopad','12':'Grudzień'
+    };
+    const date = `${months[month] || month} ${year}`;
+
+    // Cover: prefer cover.jpg, else first image
+    const cover = files.includes('cover.jpg') ? 'cover.jpg'
+      : files.find(f => /\.(jpg|jpeg|png|webp)$/i.test(f)) || '';
+
+    return {
+      slug: folder,
+      title,
+      cover: `/galeria/${folder}/${cover}`,
+      count: files.filter(f => f !== 'cover.jpg').length,
+      date,
+    };
+  });
+}
+---
+<Layout
+  title="Galeria"
+  description="Galeria zdjęć z wydarzeń szkolnych MLO Słupsk — uroczystości, wycieczki, zajęcia mundurowe, bale i imprezy kulturalne."
+  keywords="galeria MLO Słupsk, zdjęcia szkoła Słupsk, wydarzenia liceum Słupsk"
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Galeria'}]}
+      label="Galeria"
+      title="Chwile z życia szkoły"
+      sub="Fotografie z wydarzeń szkolnych — uroczystości, wycieczki, zajęcia mundurowe i kulturalne."
+    />
+
+    <section class="page-sec" style="background:#f8f8f8">
+      <div style="max-width:1400px;margin:0 auto">
+
+        {events.length === 0 ? (
+          <div style="text-align:center;padding:4rem 2rem;color:#767676">
+            <p style="font-size:1.1rem">Zdjęcia pojawią się tutaj wkrótce.</p>
+          </div>
+        ) : (
+          <div class="gallery-grid">
+            {events.map(ev => (
+              <a href={`/galeria/${ev.slug}`} class="gallery-card hover-card" style="text-decoration:none;display:block">
+                <div class="gallery-cover">
+
+                  <div class="gallery-ph">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                  </div>
+                </div>
+                <div class="gallery-info">
+                  <div class="gallery-date">{ev.date}</div>
+                  <div class="gallery-title">{ev.title}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+
+
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+.gallery-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid #ebebeb;
+  transition: box-shadow .2s, transform .2s;
+  cursor: pointer;
+}
+.gallery-card:hover {
+  box-shadow: 0 8px 32px rgba(1,33,79,.12);
+  transform: translateY(-2px);
+}
+.gallery-cover {
+  position: relative;
+  height: 260px;
+  background: #01214F;
+  overflow: hidden;
+}
+.gallery-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem}
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
+  
+
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+.page-sec{padding:5rem 2rem}
+@media(max-width:1024px){.page-sec{padding:3.5rem 1.25rem}}
+.gallery-info {
+  padding: 1rem 1.25rem;
+}
+.gallery-date {
+  font-size: .82rem;
+  color: #01214F;
+  font-weight: 600;
+  margin-bottom: .25rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.gallery-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #01214F;
+}
+</style>

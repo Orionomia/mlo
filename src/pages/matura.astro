@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const now = new Date();
+const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
+const ROK = `${year + 1}/${String(year + 2).slice(2)}`;
+---
+<Layout title="Matura" description="Kompleksowe przygotowanie do egzaminów maturalnych w MLO Słupsk. Zajęcia dodatkowe, próbne matury, konsultacje 1:1.">
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Matura'}]}
+      label="Matura"
+      title="Zdasz z MLO"
+      sub="Kompleksowe przygotowanie do egzaminów — zajęcia dodatkowe, próbne matury i konsultacje 1:1."
+    />
+    <section class="page-sec" style="background:#f8f8f8">
+      <div class="container">
+
+        <!-- Drukuj -->
+
+        <!-- Baner zmiany 2025 -->
+        <div class="alert-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div>
+            <div class="alert-title">Ważna zmiana od roku 2025</div>
+            <p class="alert-desc">Od roku 2025 zadania egzaminu maturalnego sprawdzają poziom opanowania wiadomości i umiejętności określonych w <strong>podstawie programowej kształcenia ogólnego z 2024 r.</strong> Informatory o egzaminie maturalnym znajdują się na stronie <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/informatory/" target="_blank" rel="noopener noreferrer" class="alert-link">Centralnej Komisji Egzaminacyjnej →</a></p>
+          </div>
+        </div>
+
+        <!-- Dwie kolumny: egzaminy + wsparcie -->
+        <div class="r-grid two-col">
+          <div>
+            <div class="gold-line" style="margin-bottom:.75rem">Egzaminy</div>
+            <h2 class="display sec-h2">Co musisz zdać?</h2>
+
+            <div class="exam-item" style="background:#fef2f2;border-color:#dc262622">
+              <div class="exam-bar" style="background:#dc2626"></div>
+              <div><div class="exam-name">Język polski</div><div class="exam-level">Poziom podstawowy + ustny</div></div>
+            </div>
+            <div class="exam-item" style="background:#eff6ff;border-color:#2563eb22">
+              <div class="exam-bar" style="background:#2563eb"></div>
+              <div><div class="exam-name">Matematyka</div><div class="exam-level">Poziom podstawowy</div></div>
+            </div>
+            <div class="exam-item" style="background:#f0fdf4;border-color:#05996922">
+              <div class="exam-bar" style="background:#059669"></div>
+              <div><div class="exam-name">Język obcy nowożytny</div><div class="exam-level">Poziom podstawowy + ustny</div></div>
+            </div>
+            <div class="exam-item" style="background:#f5f3ff;border-color:#7c3aed22">
+              <div class="exam-bar" style="background:#7c3aed"></div>
+              <div><div class="exam-name">Przedmiot dodatkowy</div><div class="exam-level">Co najmniej jeden na poziomie rozszerzonym</div></div>
+            </div>
+
+            <div class="min-box">
+              <strong style="color:#01214F">Minimum do zdania:</strong> 30% punktów z każdego egzaminu obowiązkowego w części pisemnej i ustnej oraz przystąpienie do co najmniej jednego przedmiotu dodatkowego.
+            </div>
+          </div>
+
+          <div>
+            <div class="gold-line" style="margin-bottom:.75rem">Wsparcie</div>
+            <h2 class="display sec-h2">Jak Ci pomagamy?</h2>
+
+            <div class="support-item">
+              <div class="support-icon" style="background:#eff6ff">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <div><div class="support-title">Zajęcia dodatkowe</div><div class="support-desc">Powtórki z trudnych przedmiotów na 3 miesiące przed maturą.</div></div>
+            </div>
+            <div class="support-item">
+              <div class="support-icon" style="background:#f5f3ff">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div><div class="support-title">Próbne matury</div><div class="support-desc">Egzaminy próbne w warunkach zbliżonych do prawdziwej matury — styczeń każdego roku.</div></div>
+            </div>
+            <div class="support-item">
+              <div class="support-icon" style="background:#f0fdf4">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div><div class="support-title">Konsultacje 1:1</div><div class="support-desc">Każdy nauczyciel dostępny na indywidualnych konsultacjach przed egzaminami.</div></div>
+            </div>
+            <div class="support-item">
+              <div class="support-icon" style="background:#fef2f2">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div><div class="support-title">Wsparcie psychiczne</div><div class="support-desc">Nasz pedagog pomaga radzić sobie ze stresem przed egzaminami.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Harmonogram -->
+        <div class="section-block">
+          <div class="gold-line" style="margin-bottom:.75rem">Terminy</div>
+          <h2 class="display sec-h2">Harmonogram {ROK}</h2>
+          <div class="sched-grid">
+            <div class="sched-card">
+              <div class="sched-icon" style="background:#eff6ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <div class="sched-name">Część pisemna</div>
+              <div class="sched-date" style="color:#2563eb">4–21 maja 2026</div>
+              <div class="sched-sub">Dwie tury: godz. 9:00 i 14:00</div>
+            </div>
+            <div class="sched-card">
+              <div class="sched-icon" style="background:#f5f3ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              <div class="sched-name">Część ustna</div>
+              <div class="sched-date" style="color:#7c3aed">7–30 maja 2026</div>
+              <div class="sched-sub">Wyniki tego samego dnia</div>
+            </div>
+            <div class="sched-card">
+              <div class="sched-icon" style="background:#f0fdf4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+              <div class="sched-name">Ogłoszenie wyników</div>
+              <div class="sched-date" style="color:#047857">8 lipca 2026</div>
+              <div class="sched-sub">Godz. 8:30, system ZIU</div>
+            </div>
+            <div class="sched-card">
+              <div class="sched-icon" style="background:#fff3e0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <div class="sched-name">Sesja poprawkowa</div>
+              <div class="sched-date" style="color:#01214F">24–25 sierpnia 2026</div>
+              <div class="sched-sub">Wyniki: 11 września 2026</div>
+            </div>
+          </div>
+          <div class="sched-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Harmonogram może ulec zmianie — zawsze weryfikuj aktualne terminy na <a href="https://cke.gov.pl" target="_blank" rel="noopener noreferrer" class="alert-link">cke.gov.pl</a>
+          </div>
+        </div>
+
+        <!-- Przydatne linki -->
+        <div class="section-block">
+          <div class="gold-line" style="margin-bottom:.75rem">Linki</div>
+          <h2 class="display sec-h2">Przydatne strony</h2>
+          <div class="links-grid">
+            <a href="https://cke.gov.pl" target="_blank" rel="noopener noreferrer" class="link-card" data-color="#2563eb">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <div><div class="link-card-title">Centralna Komisja Egzaminacyjna</div><div class="link-card-desc">Informatory, harmonogramy, arkusze maturalne</div></div>
+            </a>
+            <a href="https://www.oke.gda.pl" target="_blank" rel="noopener noreferrer" class="link-card" data-color="#059669">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <div><div class="link-card-title">OKE Gdańsk</div><div class="link-card-desc">Okręgowa komisja właściwa dla Słupska — wyniki i komunikaty</div></div>
+            </a>
+            <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/informatory/" target="_blank" rel="noopener noreferrer" class="link-card" data-color="#7c3aed">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <div><div class="link-card-title">Informatory maturalne 2025+</div><div class="link-card-desc">Pełna lista informatorów dla nowej podstawy programowej</div></div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.page-sec{padding:5rem 2rem}
+@media(max-width:1024px){.page-sec{padding:3.5rem 1.25rem}}
+.container{max-width:1400px;margin:0 auto;display:flex;flex-direction:column;gap:3rem}
+
+
+
+.alert-bar{background:#fff3e0;border:1.5px solid #E2A62D44;border-radius:14px;padding:1.25rem 1.75rem;display:flex;gap:14px;align-items:center;width:100%}
+.alert-title{font-weight:700;font-size:.95rem;color:#01214F;margin-bottom:.25rem}
+.alert-desc{font-size:.88rem;color:#555;line-height:1.7;margin:0}
+.alert-link{color:#01214F;font-weight:700;text-decoration:none}
+.r-grid.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.gold-line{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#01214F}
+.sec-h2{font-size:clamp(1.8rem,3vw,3rem);color:#01214F;font-weight:800;margin-bottom:2rem}
+.exam-item{border:1.5px solid;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:flex;gap:1rem;align-items:center}
+.exam-bar{width:4px;border-radius:2px;align-self:stretch;flex-shrink:0}
+.exam-name{font-weight:700;font-size:.97rem;color:#01214F}
+.exam-level{font-size:.78rem;color:#767676;margin-top:.15rem}
+.min-box{background:#fff;border:1.5px solid #ebebeb;border-radius:14px;padding:1.25rem 1.5rem;margin-top:.5rem;font-size:.86rem;color:#555;line-height:1.7}
+.support-item{background:#fff;border:1.5px solid #f0f0f0;border-radius:14px;padding:1.25rem;display:flex;gap:1rem;margin-bottom:.85rem}
+.support-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.support-title{font-weight:700;font-size:.9rem;color:#01214F;margin-bottom:.2rem}
+.support-desc{font-size:.82rem;color:#767676;line-height:1.55}
+.section-block{display:flex;flex-direction:column;gap:0}
+.sched-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:1rem}
+.sched-card{background:#fff;border:1.5px solid #ebebeb;border-radius:14px;padding:1.5rem}
+.sched-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem}
+.sched-name{font-weight:700;font-size:.88rem;color:#01214F;margin-bottom:.2rem}
+.sched-date{font-weight:800;font-size:1.05rem;margin-bottom:.15rem}
+.sched-sub{font-size:.76rem;color:#767676}
+.sched-note{font-size:.78rem;color:#767676;display:flex;align-items:center;gap:6px}
+.links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.link-card{display:flex;gap:1rem;align-items:center;background:#fff;border:1.5px solid #ebebeb;border-radius:14px;padding:1.25rem 1.5rem;text-decoration:none;transition:border-color .2s}
+.link-card:hover{border-color:#01214F}
+.link-card-title{font-weight:700;font-size:.9rem;color:#01214F;margin-bottom:.2rem}
+.link-card-desc{font-size:.8rem;color:#767676;line-height:1.5}
+@media(max-width:768px){.r-grid.two-col{grid-template-columns:1fr;gap:2.5rem}.sched-grid{grid-template-columns:1fr 1fr}.links-grid{grid-template-columns:1fr}.sched-grid{grid-template-columns:1fr 1fr}.links-grid{grid-template-columns:1fr}}
+@media print{}
+</style>

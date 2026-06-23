@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<Layout
+  title="Język kaszubski"
+  description="Edukacja kaszubska w MLO Słupsk. Język kaszubski jako jedyny regionalny język Polski — lekcje, warsztaty, wycieczki edukacyjne i projekty kulturowe."
+  keywords="język kaszubski Słupsk, edukacja kaszubska MLO, kaszubski liceum Słupsk, kultura kaszubska szkoła"
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{'label':'Start','href':'/'},{'label':'Język kaszubski'}]} label="Język kaszubski" title="Kaszëbsczi jãzëk" sub="Język kaszubski — jedyny regionalny język Polski. W MLO pielęgnujemy tę tradycję Pomorza z dumą." />
+
+    <section class="page-sec" style="background:#f8f8f8">
+      <div style="max-width:1400px;margin:0 auto">
+
+        <!-- Intro + Cele -->
+        <div class="r-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-bottom:4rem;align-items:start">
+          <div>
+            <div class="gold-line" style="margin-bottom:.75rem">Edukacja kaszubska</div>
+            <h2 class="display sec-h2">Dziedzictwo Pomorza</h2>
+            <p class="body-text">Edukacja kaszubska jest procesem, w ramach którego kształtuje się językowa, kulturowa i tożsamościowa świadomość młodego człowieka. Partnerem w tym procesie jest rodzina ucznia, środowisko lokalne i regionalne.</p>
+            <p class="body-text">Język kaszubski posiada status oficjalnego języka regionalnego w Polsce od 2005 roku — jedyny taki język w naszym kraju. Pielęgnujemy go w MLO Słupsk z dumą i radością.</p>
+            <p class="body-text">Edukacja kaszubska to nie tylko pielęgnowanie tradycji, ale również inwestycja w przyszłość regionu — budowanie mostu między przeszłością a potrzebami współczesnego świata.</p>
+            <div class="quote-box">
+              <div class="quote-text" lang="csb">"Bëc Kaszëbą to zaszczit"</div>
+              <div class="quote-sub">„Być Kaszubą to zaszczyt" — kaszubskie powiedzenie</div>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="padding:1.75rem">
+              <div class="card-heading">
+                <div class="dot"></div>
+                Cele edukacji kaszubskiej
+              </div>
+              <div class="goals-grid">
+                <div class="goal-item">
+                  <div class="goal-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  </div>
+                  <div>
+                    <div class="goal-label">Świadomość</div>
+                    <div class="goal-desc">Kształtowanie językowej, kulturowej i tożsamościowej świadomości ucznia</div>
+                  </div>
+                </div>
+                <div class="goal-item">
+                  <div class="goal-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <div>
+                    <div class="goal-label">Wiedza</div>
+                    <div class="goal-desc">Pogłębianie wiedzy o języku, literaturze, tradycji i historii Kaszub</div>
+                  </div>
+                </div>
+                <div class="goal-item">
+                  <div class="goal-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                  <div>
+                    <div class="goal-label">Tożsamość</div>
+                    <div class="goal-desc">Kształtowanie pozytywnego stosunku do języka i kultury kaszubskiej</div>
+                  </div>
+                </div>
+                <div class="goal-item">
+                  <div class="goal-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div>
+                    <div class="goal-label">Zaangażowanie</div>
+                    <div class="goal-desc">Rozwijanie zaangażowania w kulturę i środowisko Pomorza</div>
+                  </div>
+                </div>
+                <div class="goal-item">
+                  <div class="goal-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div>
+                    <div class="goal-label">Otwartość</div>
+                    <div class="goal-desc">Otwartość na inne kultury Pomorza, polską i europejską</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jak realizujemy -->
+        <div class="gold-line" style="margin-bottom:.75rem">W naszej szkole</div>
+        <h2 class="display sec-h2">Jak realizujemy edukację kaszubską?</h2>
+        <div class="activity-grid">
+          <div class="activity-card">
+            <div class="act-icon" style="background:#eff6ff">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="act-title">Lekcje języka</div>
+            <div class="act-desc">Regularne lekcje języka kaszubskiego prowadzone przez wykwalifikowanych nauczycieli</div>
+          </div>
+          <div class="activity-card">
+            <div class="act-icon" style="background:#f5f3ff">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="act-title">Historia Pomorza</div>
+            <div class="act-desc">Warsztaty kulturowe przybliżające tradycje, obrzędy i historię Kaszub</div>
+          </div>
+          <div class="activity-card">
+            <div class="act-icon" style="background:#ecfdf5">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="act-title">Wycieczki edukacyjne</div>
+            <div class="act-desc">Wyjazdy do miejsc związanych z historią i kulturą Kaszub</div>
+          </div>
+          <div class="activity-card">
+            <div class="act-icon" style="background:#fffbeb">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="act-title">Spotkania z twórcami</div>
+            <div class="act-desc">Spotkania z twórcami i przedstawicielami środowiska kaszubskiego</div>
+          </div>
+          <div class="activity-card">
+            <div class="act-icon" style="background:#fff3e0">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg>
+            </div>
+            <div class="act-title">Olimpiady i konkursy</div>
+            <div class="act-desc">Udział w wydarzeniach kulturalnych i konkursach języka kaszubskiego</div>
+          </div>
+          <div class="activity-card">
+            <div class="act-icon" style="background:#fef2f2">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="act-title">Projekty rodzinne</div>
+            <div class="act-desc">Projekty międzypokoleniowe angażujące rodziny uczniów</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.sec-h2{font-size:clamp(1.8rem,3vw,3rem);color:#01214F;font-weight:800;margin-bottom:2rem}
+.body-text{font-size:1rem;line-height:1.85;color:#555;margin-bottom:1rem}
+.quote-box{background:#01214F;border-radius:16px;padding:2.5rem;margin-top:1.5rem}
+.quote-text{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.7rem;color:#E2A62D;margin-bottom:.75rem;line-height:1.4}
+.quote-sub{font-size:.82rem;color:rgba(255,255,255,.4)}
+.card{background:#fff;border:1.5px solid #ebebeb;border-radius:16px}
+.card-heading{font-weight:700;font-size:.9rem;color:#01214F;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.dot{width:6px;height:6px;border-radius:50%;background:#E2A62D;flex-shrink:0}
+
+.activity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.activity-card{background:#fff;border:1.5px solid #ebebeb;border-radius:14px;padding:1.5rem}
+.act-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem}
+.act-title{font-weight:700;font-size:.9rem;color:#01214F;margin-bottom:.25rem}
+.act-desc{font-size:.82rem;color:#767676;line-height:1.5}
+@media(max-width:768px){
+  .r-grid{grid-template-columns:1fr!important;gap:2.5rem}
+  
+
+
+}
+.page-sec{padding:5rem 2rem}
+@media(max-width:1024px){.page-sec{padding:3.5rem 1.25rem}}
+.goals-grid{display:flex;flex-direction:column;gap:.5rem}
+.goal-item{display:flex;gap:.9rem;align-items:flex-start;padding:.75rem;border-radius:10px;transition:background .2s}
+.goal-item:hover{background:#fafafa}
+.goal-icon{width:36px;height:36px;border-radius:10px;background:#fff8ee;border:1.5px solid #E2A62D22;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.goal-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#01214F;margin-bottom:.2rem}
+.goal-desc{font-size:.87rem;color:#555;line-height:1.6}
+</style>

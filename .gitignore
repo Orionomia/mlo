@@ -1,0 +1,33 @@
+# Zależności
+node_modules/
+
+# Build output
+dist/
+.output/
+
+# Astro cache
+.astro/
+
+# Środowisko lokalne
+.env
+.env.local
+.env.production
+
+# System
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Edytory
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logi
+*.log
+npm-debug.log*
+
+# Tymczasowe
+*.tmp
+*.temp

@@ -1,0 +1,254 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+export function getStaticPaths() {
+  const galeriaPath = path.join(process.cwd(), 'public/galeria');
+  if (!fs.existsSync(galeriaPath)) return [];
+
+  const folders = fs.readdirSync(galeriaPath)
+    .filter(f => fs.statSync(path.join(galeriaPath, f)).isDirectory());
+
+  return folders.map(folder => {
+    const folderPath = path.join(galeriaPath, folder);
+    const files = fs.readdirSync(folderPath)
+      .filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f))
+      .sort();
+
+    const parts = folder.split('-');
+    const year = parts[0];
+    const month = parts[1];
+    const words = parts.slice(2).map(w => w.charAt(0).toUpperCase() + w.slice(1));
+    const titleMap: Record<string, string> = {
+      'wycieczka-gdansk': 'Wycieczka Gdańsk',
+      'bal-maturalny': 'Bal Maturalny',
+      'dzien-sportu': 'Dzień Sportu',
+      'rozpoczecie-roku': 'Rozpoczęcie Roku',
+    };
+    const folderKey = parts.slice(2).join('-');
+    const title = titleMap[folderKey] || words.join(' ');
+
+    const months: Record<string, string> = {
+      '01':'Styczeń','02':'Luty','03':'Marzec','04':'Kwiecień',
+      '05':'Maj','06':'Czerwiec','07':'Lipiec','08':'Sierpień',
+      '09':'Wrzesień','10':'Październik','11':'Listopad','12':'Grudzień'
+    };
+    const date = `${months[month] || month} ${year}`;
+
+    const photos = files
+      .filter(f => f !== 'cover.jpg')
+      .map(f => `/galeria/${folder}/${f}`);
+
+    // Add cover first if exists
+    if (files.includes('cover.jpg')) {
+      photos.unshift(`/galeria/${folder}/cover.jpg`);
+    }
+
+    return {
+      params: { slug: folder },
+      props: { title, date, folder, photos },
+    };
+  });
+}
+
+const { title, date, folder, photos } = Astro.props;
+---
+<Layout
+  title={`${title} — Galeria MLO Słupsk`}
+  description={`Zdjęcia z wydarzenia: ${title}, ${date}. Galeria fotograficzna MLO Słupsk.`}
+  keywords={`galeria MLO Słupsk, ${title.toLowerCase()}, zdjęcia szkoła Słupsk`}
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Galeria',href:'/galeria'},{label:title}]}
+      label={date}
+      title={title}
+      sub={`${photos.length} zdjęć z tego wydarzenia`}
+    />
+
+    <section class="page-sec" style="background:#f8f8f8">
+      <div style="max-width:1400px;margin:0 auto">
+
+        <!-- Photo grid -->
+        {photos.length === 0 && (
+          <div style="text-align:center;padding:4rem 2rem;color:#767676">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(226,166,45,.4)" stroke-width="1.2" style="margin-bottom:1rem"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <p style="font-size:1rem;font-weight:600;color:#01214F">Zdjęcia pojawią się wkrótce</p>
+            <p style="font-size:.85rem;margin-top:.25rem">Album jest przygotowywany</p>
+          </div>
+        )}
+        <div class="photos-grid" id="photos-grid">
+          {photos.map((src, i) => (
+            <button
+              class="photo-btn"
+              data-index={i}
+              aria-label={`Otwórz zdjęcie ${i + 1}`}
+              onclick={`openLightbox(${i})`}
+            >
+              <img
+                src={src}
+                alt={`${title} — zdjęcie ${i + 1}`}
+                loading="lazy"
+                style="display:none"
+              />
+              <div class="photo-ph">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <!-- Back link -->
+        <div style="text-align:center;margin-top:2.5rem">
+          <a href="/galeria" style="display:inline-flex;align-items:center;gap:8px;color:#01214F;font-weight:600;font-size:.9rem;text-decoration:none;padding:.75rem 1.5rem;border:1.5px solid #e0e0e0;border-radius:10px;transition:border-color .2s"
+            onmouseover="this.style.borderColor='#01214F'" onmouseout="this.style.borderColor='#e0e0e0'">
+            ← Powrót do galerii
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" role="dialog" aria-label="Podgląd zdjęcia" aria-modal="true" style="display:none">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Zamknij">✕</button>
+  <button class="lb-prev" onclick="prevPhoto()" aria-label="Poprzednie zdjęcie">&#8249;</button>
+  <button class="lb-next" onclick="nextPhoto()" aria-label="Następne zdjęcie">&#8250;</button>
+  <div class="lb-inner">
+    <div id="lb-ph" style="width:min(90vw,600px);height:min(85vh,400px);background:#01214F;border-radius:8px;display:flex;align-items:center;justify-content:center">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    </div>
+    <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:none"
+      onload="this.style.display='block';document.getElementById('lb-ph').style.display='none'"
+      onerror="this.style.display='none';document.getElementById('lb-ph').style.display='flex'"
+    />
+    <div id="lb-counter" style="text-align:center;color:rgba(255,255,255,.6);font-size:.85rem;margin-top:.75rem"></div>
+  </div>
+</div>
+
+<script define:vars={{ photos }}>
+  let current = 0;
+
+  function openLightbox(index) {
+    current = index;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    updateLightbox();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function updateLightbox() {
+    const img = document.getElementById('lb-img');
+    const ph = document.getElementById('lb-ph');
+    img.style.display = 'none';
+    ph.style.display = 'flex';
+    img.src = photos[current];
+    document.getElementById('lb-img').alt = `Zdjęcie ${current + 1} z ${photos.length}`;
+    document.getElementById('lb-counter').textContent = `${current + 1} / ${photos.length}`;
+  }
+
+  function prevPhoto() {
+    current = (current - 1 + photos.length) % photos.length;
+    updateLightbox();
+  }
+
+  function nextPhoto() {
+    current = (current + 1) % photos.length;
+    updateLightbox();
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').style.display === 'none') return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevPhoto();
+    if (e.key === 'ArrowRight') nextPhoto();
+  });
+
+  // Click outside to close
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  });
+
+  // Expose to onclick attributes
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.prevPhoto = prevPhoto;
+  window.nextPhoto = nextPhoto;
+</script>
+
+<style>
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .75rem;
+}
+.photo-btn {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 10px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: #01214F;
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+}
+.photo-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(1,33,79,.2);
+}
+.photo-btn:hover img { transform: scale(1.05); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.lb-inner { text-align: center; }
+.lb-close {
+  position: fixed; top: 1.25rem; right: 1.5rem;
+  background: rgba(255,255,255,.15); border: none;
+  color: #fff; font-size: 1.5rem; width: 44px; height: 44px;
+  border-radius: 50%; cursor: pointer; transition: background .2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.lb-close:hover { background: rgba(255,255,255,.3); }
+.lb-prev, .lb-next {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.12); border: none;
+  color: #fff; font-size: 2.5rem; width: 52px; height: 52px;
+  border-radius: 50%; cursor: pointer; transition: background .2s;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.lb-prev { left: 1.5rem; }
+.lb-next { right: 1.5rem; }
+.lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.25); }
+
+@media(max-width:768px) {
+  .photos-grid { grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+  
+  .lb-prev { left: .5rem; }
+  .lb-next { right: .5rem; }
+}
+.page-sec{padding:5rem 2rem}
+@media(max-width:1024px){.page-sec{padding:3.5rem 1.25rem}}
+.photo-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#01214F}
+</style>

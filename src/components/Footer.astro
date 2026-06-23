@@ -1,0 +1,171 @@
+---
+import { NAV_LINKS } from '../data';
+
+const col1 = NAV_LINKS.slice(0, 3);
+const col2 = NAV_LINKS.slice(3, 6);
+const col3 = [...NAV_LINKS.slice(6, 9), { href: '/ksiega-znaku', label: 'Księga znaku' }];
+---
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="/logo-mlo.svg" alt="Logo MLO Słupsk" class="footer-logo-img" />
+          <div>
+            <div class="footer-name">MLO Słupsk</div>
+            <div class="footer-fullname">Młodzieżowe Liceum Ogólnokształcące <br/>w Słupsku</div>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Szkoła z tradycją od 1997 roku. Kształcimy liderów, patriotów i profesjonalistów gotowych na wyzwania przyszłości.
+        </p>
+        <div class="footer-contacts">
+          <div class="footer-contact-row">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            ul. Wojska Polskiego 46A, 76-200 Słupsk
+          </div>
+          <a href="tel:+48786933376" class="footer-contact-row footer-contact-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2.5"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+            +48 786 933 376
+          </a>
+          <a href="tel:+48505525119" class="footer-contact-row footer-contact-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2.5"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+            +48 505 525 119
+          </a>
+          <a href="mailto:liceum.nauka@wp.pl" class="footer-contact-row footer-contact-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            liceum.nauka@wp.pl
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      {[col1, col2, col3].map((col, ci) => (
+        <div class="footer-col">
+          <div class="footer-col-title">
+            {ci === 0 ? 'Szkoła' : ci === 1 ? 'Nauka' : 'Więcej'}
+          </div>
+          {col.map(({ href, label }) => (
+            <a href={href} class="footer-link">{label}</a>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span class="footer-copy">© 1997–<span data-rok="end">2026</span> Młodzieżowe Liceum Ogólnokształcące w Słupsku</span>
+      <div class="footer-bottom-right">
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:1.5rem">
+            <a href="/polityka-prywatnosci" class="footer-legal-link" style="display:flex;align-items:center;gap:5px;font-size:.73rem;color:rgba(255,255,255,.32);text-decoration:none">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Polityka prywatności i cookies
+            </a>
+            <a href="/deklaracja-dostepnosci" class="footer-legal-link" style="display:flex;align-items:center;gap:5px;font-size:.73rem;color:rgba(255,255,255,.32);text-decoration:none">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Deklaracja dostępności
+            </a>
+            <div style="display:flex;align-items:center;gap:5px;font-size:.73rem;color:rgba(255,255,255,.32)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Strona dostępna jako aplikacja PWA na telefon
+            </div>
+          </div>
+        <div class="footer-credit">
+          <span>Projekt i realizacja:</span>
+          <a href="mailto:orionomia@gmail.com" class="footer-orionomia">Orionomia | Digital infrastructure for scholarly publishing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  // Rok szkolny (auto)
+  function getRokSzkolny(){
+    const d=new Date(), y=d.getFullYear(), m=d.getMonth()+1;
+    return m>=9 ? `${y}/${y+1}` : `${y-1}/${y}`;
+  }
+  const ROK = getRokSzkolny();
+  // Update all elements with data-rok attribute
+  document.querySelectorAll('[data-rok]').forEach(el => {
+    el.textContent = el.dataset.rok === 'end'
+      ? new Date().getFullYear()
+      : ROK;
+  });
+</script>
+
+<style>
+  footer {
+    background: #01214F;
+    border-top: 3px solid #E2A62D;
+    padding: 4.5rem 2rem 0;
+  }
+  .footer-inner { max-width: 1400px; margin: 0 auto; }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+  }
+
+  /* Brand */
+  .footer-logo { display: flex; align-items: center; gap: 11px; margin-bottom: 1.3rem; }
+  .footer-logo-img { height: 52px; width: auto; display: block; object-fit: contain; flex-shrink: 0; }
+  .footer-name { font-weight: 700; font-size: 1.05rem; color: #fff; line-height: 1.1; }
+  .footer-sub  { font-size: .65rem; color: rgba(255,255,255,.35); letter-spacing: .1em; text-transform: uppercase; }
+  .footer-desc { font-size: .95rem; color: rgba(255,255,255,.58); line-height: 1.85; max-width: 290px; margin-bottom: 1.4rem; }
+
+  .footer-contacts { display: flex; flex-direction: column; gap: .55rem; }
+  .footer-contact-row { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: rgba(255,255,255,.58); }
+  .footer-contact-link { transition: color .2s; }
+  .footer-contact-link:hover { color: #E2A62D; }
+
+  /* Columns */
+  .footer-col-title {
+    font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    color: rgba(255,255,255,.38); margin-bottom: 1.15rem;
+    border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: .6rem;
+  }
+  .footer-link {
+    display: block; font-size: .95rem; color: rgba(255,255,255,.55);
+    margin-bottom: .7rem; font-weight: 400; transition: color .18s;
+  }
+  .footer-link:hover { color: #E2A62D; }
+
+  /* Bottom bar */
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 1.4rem 0;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy    { font-size: .85rem; color: rgba(255,255,255,.42); }
+  .footer-bottom-right { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+      .footer-credit  { display: flex; align-items: center; gap: 7px; font-size: .8rem; color: rgba(255,255,255,.32); }
+  .footer-orionomia {
+    background: rgba(226,166,45,.12);
+    border: 1px solid rgba(226,166,45,.3);
+    border-radius: 7px; padding: .32rem .85rem;
+    font-size: .82rem; font-weight: 700; color: #E2A62D;
+    letter-spacing: .02em; transition: all .2s;
+  }
+  .footer-legal-link:hover { color: rgba(255,255,255,.7) !important; }
+  .footer-orionomia:hover {
+    background: rgba(226,166,45,.22);
+    border-color: rgba(226,166,45,.55);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+.footer-pwa{display:flex;align-items:center;gap:4px;font-size:.73rem;color:rgba(255,255,255,.32)}
+.footer-fullname{font-size:.72rem;color:rgba(255,255,255,.35);font-weight:400;margin-top:.15rem}
+</style>

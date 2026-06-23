@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<Layout title="Polityka prywatności" description="Polityka prywatności i cookies serwisu mlo.slupsk.pl">
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Polityka prywatności i cookies'}]}
+      label="Informacje prawne"
+      title="Polityka prywatności i cookies"
+      sub="Informacje o przetwarzaniu danych osobowych oraz plikach cookies zgodnie z RODO."
+    />
+    <section class="sec">
+      <div class="container">
+        <div class="container">
+
+          <div class="info-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Dokument obowiązuje od <strong>15 czerwca 2026 r.</strong> Ostatnia aktualizacja: <strong>15 czerwca 2026 r.</strong></span>
+          </div>
+
+          <div class="card">
+            <h2>1. Administrator danych osobowych</h2>
+            <p>Administratorem Twoich danych osobowych jest Młodzieżowe Liceum Ogólnokształcące w Słupsku, ul. Wojska Polskiego 46A, 76-200 Słupsk. Placówka działa na podstawie przepisów Prawa oświatowego (Dz.U. 2021 poz. 1082 ze zm.).</p>
+          </div>
+
+          <div class="card">
+            <h2>2. Inspektor Ochrony Danych</h2>
+            <p>W sprawach związanych z ochroną danych osobowych możesz kontaktować się z Inspektorem Ochrony Danych powołanym przez szkołę, pisząc na adres: ul. Wojska Polskiego 46A, 76-200 Słupsk lub telefonicznie pod numer +48 786 933 376.</p>
+          </div>
+
+          <div class="card">
+            <h2>3. Jakie dane przetwarzamy?</h2>
+            <ul>
+              <li>Dane uczniów i rodziców/opiekunów prawnych niezbędne do realizacji procesu kształcenia</li>
+              <li>Dane kandydatów do szkoły w procesie rekrutacji (imię, nazwisko, PESEL, wyniki egzaminów)</li>
+              <li>Dane techniczne zbierane automatycznie przy odwiedzinach strony (adres IP, typ przeglądarki, czas odwiedzin)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>4. Cel i podstawa prawna przetwarzania</h2>
+            <ul>
+              <li>Realizacja zadań dydaktyczno-wychowawczych szkoły — art. 6 ust. 1 lit. c RODO (obowiązek prawny)</li>
+              <li>Przeprowadzenie rekrutacji — art. 6 ust. 1 lit. c RODO w zw. z ustawą Prawo oświatowe</li>
+              <li>Kontakt ze szkoły — art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes administratora)</li>
+              <li>Statystyki i analiza ruchu na stronie — dane anonimowe, bez podstawy przetwarzania danych osobowych</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>5. Odbiorcy danych</h2>
+            <p>Dane osobowe mogą być przekazywane organom publicznym uprawnionym do ich otrzymania (m.in. Kuratorium Oświaty, ZUS, urząd skarbowy) oraz podmiotom świadczącym usługi na rzecz szkoły (np. obsługa IT), z którymi zawarte są stosowne umowy powierzenia przetwarzania danych.</p>
+          </div>
+
+          <div class="card">
+            <h2>6. Okres przechowywania danych</h2>
+            <p>Dane przechowywane są przez okres wynikający z przepisów prawa (Instrukcja Kancelaryjna, Jednolity Rzeczowy Wykaz Akt) lub przez czas niezbędny do realizacji celu przetwarzania, a następnie archiwizowane lub usuwane zgodnie z obowiązującymi przepisami.</p>
+          </div>
+
+          <div class="card">
+            <h2>7. Twoje prawa</h2>
+            <ul>
+              <li>Prawo dostępu do swoich danych osobowych (art. 15 RODO)</li>
+              <li>Prawo do sprostowania nieprawidłowych danych (art. 16 RODO)</li>
+              <li>Prawo do usunięcia danych — w zakresie dopuszczalnym przepisami prawa (art. 17 RODO)</li>
+              <li>Prawo do ograniczenia przetwarzania (art. 18 RODO)</li>
+              <li>Prawo do przenoszenia danych (art. 20 RODO)</li>
+              <li>Prawo do wniesienia sprzeciwu wobec przetwarzania (art. 21 RODO)</li>
+              <li>Prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>8. Pliki cookies, Cloudflare i Service Worker</h2>
+            <ul>
+              <li>Cloudflare Inc. (101 Townsend St, San Francisco, CA 94107, USA) — może ustawiać techniczne cookies (__cf_buid, cf_clearance) niezbędne do bezpieczeństwa strony. Nie służą do śledzenia użytkowników. Podstawa prawna: art. 6 ust. 1 lit. f RODO. Polityka: cloudflare.com/privacypolicy</li>
+              <li>Service Worker — zapisuje zasoby strony w pamięci podręcznej przeglądarki w celu szybszego działania. Cache nie zawiera danych osobowych i można go wyczyścić w ustawieniach przeglądarki</li>
+              <li>Google Maps (Google LLC) — mapa na stronie Kontakt. Korzystanie z mapy podlega polityce prywatności Google: policies.google.com/privacy</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>9. Przekazywanie danych poza EOG</h2>
+            <p>Szkoła nie przekazuje danych osobowych do państw trzecich (poza Europejski Obszar Gospodarczy) ani do organizacji międzynarodowych.</p>
+          </div>
+
+          <div class="card">
+            <h2>10. Kontakt</h2>
+            <ul>
+              <li>Adres: ul. Wojska Polskiego 46A, 76-200 Słupsk</li>
+              <li>Telefon: +48 786 933 376 | +48 505 525 119</li>
+              <li>E-mail: <a href="mailto:liceum.nauka@wp.pl">liceum.nauka@wp.pl</a></li>
+              <li>Godziny sekretariatu: Pn–Pt 9:00–14:00</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>11. Dostępność cyfrowa</h2>
+            <p>Strona mlo.slupsk.pl jest realizowana zgodnie z wymogami ustawy z dnia 4 kwietnia 2019 r. o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych (Dz.U. 2019 poz. 848).</p>
+            <a href="/deklaracja-dostepnosci" class="link-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              Zobacz Deklarację dostępności
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.sec{background:#f8f8f8;padding:5rem 2rem}
+@media(max-width:768px){.sec{padding:3.5rem 1.25rem}}
+.container{max-width:1400px;margin:0 auto}
+
+.info-bar{display:flex;align-items:center;gap:10px;background:#fff3e0;border:1.5px solid #E2A62D33;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:.88rem;color:#555;line-height:1.6}
+.card{background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:2rem;margin-bottom:1.25rem}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:#01214F;margin-bottom:.85rem;padding-bottom:.75rem;border-bottom:1.5px solid #f0f0f0}
+.card p{font-size:.93rem;line-height:1.8;color:#555;margin-bottom:.25rem}
+.card ul{list-style:none;padding:0;margin:.5rem 0 0;display:flex;flex-direction:column;gap:.55rem}
+.card ul li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;line-height:1.8;color:#555}
+.card ul li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#E2A62D;flex-shrink:0;margin-top:.62rem}
+.card a{color:#01214F;font-weight:600;text-decoration:none}
+.card a:not(.link-btn):hover{text-decoration:underline}
+.link-btn{display:inline-flex;align-items:center;gap:6px;margin-top:.85rem;border:1.5px solid #01214F;color:#01214F;font-size:.88rem;font-weight:700;padding:.6rem 1.2rem;border-radius:8px;text-decoration:none;transition:all .2s}
+.link-btn:hover{background:#01214F;color:#fff !important}
+</style>

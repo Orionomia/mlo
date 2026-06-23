@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const direction = [
+  { subject: "Dyrektor szkoły",                              names: [{name:"mgr Dębicka Lidia",     wych:"2A"}] },
+  { subject: "Wicedyrektor<br/>ds. dydaktycznych",           names: [{name:"mgr Eberlein Magdalena",wych:"1A"}] },
+  { subject: "Wicedyrektor<br/>ds. admin./finans.",          names: [{name:"mgr Kapral Małgorzata", wych:null}] },
+];
+
+const teachers = [
+  { subject:"Język polski",                names:[{name:"mgr Eberlein Magdalena",wych:null},{name:"mgr Wasyl Katarzyna",wych:null},{name:"mgr Arciszewska Jolanta",wych:null}] },
+  { subject:"Matematyka",                  names:[{name:"mgr Łyszyk Elżbieta",wych:"3A"},{name:"mgr Słupska Magdalena",wych:null}] },
+  { subject:"Język angielski",             names:[{name:"mgr Martyn Mariusz",wych:"3B"},{name:"mgr Starzecki Grzegorz",wych:null}] },
+  { subject:"Język niemiecki",             names:[{name:"mgr Czernecka Teresa",wych:"2B"}] },
+  { subject:"Język kaszubski",             names:[{name:"mgr Szewc Tomasz",wych:null}] },
+  { subject:"Geografia",                   names:[{name:"mgr Krawczyk Janusz",wych:null},{name:"mgr Mrzygłód Piotr",wych:null}] },
+  { subject:"Biologia",                    names:[{name:"mgr Zacharzewska Ewa",wych:null}] },
+  { subject:"Fizyka",                      names:[{name:"mgr Starzecka Alicja",wych:null},{name:"mgr Żelechowski Wojciech",wych:null}] },
+  { subject:"Chemia",                      names:[{name:"mgr Żelechowski Wojciech",wych:null},{name:"mgr Starzecka Alicja",wych:null},{name:"mgr Litwiniuk Elżbieta",wych:null}] },
+  { subject:"Historia",                    names:[{name:"mgr Mrzygłód Piotr",wych:null},{name:"mgr Wysocka Iwona",wych:null}] },
+  { subject:"WOS / HIT",                   names:[{name:"mgr Staniul Eugeniusz",wych:null},{name:"mgr Wysocka Iwona",wych:null},{name:"mgr Mrzygłód Piotr",wych:null}] },
+  { subject:"Podstawy przedsiębiorczości", names:[{name:"mgr Grzesiak Anna",wych:null}] },
+  { subject:"Podstawy psychologii",        names:[{name:"mgr Molicka Alicja",wych:null}] },
+  { subject:"Plastyka",                    names:[{name:"mgr Żurawska Małgorzata",wych:null}] },
+  { subject:"Zajęcia artystyczne",         names:[{name:"mgr Stecz Małgorzata",wych:null}] },
+  { subject:"Zajęcia mundurowe",           names:[{name:"dr Kaduszkiewicz Marcin",wych:null}] },
+  { subject:"Informatyka",                 names:[{name:"mgr Kaleta Artur",wych:null}] },
+  { subject:"Wychowanie fizyczne",         names:[{name:"mgr Schulz Ewa",wych:null},{name:"mgr Ćmiel Tomasz",wych:null}] },
+  { subject:"Biznes i zarządzanie",        names:[{name:"mgr Grzesiak Anna",wych:null}] },
+  { subject:"Psycholog",                   names:[{name:"mgr Klauz Barbara",wych:null}] },
+];
+---
+<Layout title="Kadra nauczycielska" description="Kadra nauczycielska Młodzieżowego Liceum Ogólnokształcącego w Słupsku. Wykwalifikowani nauczyciele, pedagog szkolny i instruktorzy zajęć mundurowych." keywords="nauczyciele MLO Słupsk, kadra pedagogiczna liceum Słupsk, wychowawcy klas MLO">
+  <Navbar />
+  <main>
+    <PageHeader
+      breadcrumbs={[{'label':'Start','href':'/'},{'label':'Kadra'}]} label="Kadra nauczycielska" title="Nasi nauczyciele" sub="Wykwalifikowana kadra pedagogiczna — nauczyciele z pasją i wieloletnim doświadczeniem." />
+    <section style="background:#f8f8f8;padding:5rem 2rem;box-sizing:border-box;width:100%">
+      <div class="container">
+        <div class="kadra-grid">
+
+        <!-- Dyrekcja sidebar -->
+        <div class="dir-sidebar">
+          <div class="dir-card-title">Dyrekcja szkoły</div>
+          {direction.map((d, i) => (
+            <div class="dir-card">
+              <div class="dir-icon-wrap">
+                {i === 0 && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+                {i === 1 && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>}
+                {i === 2 && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>}
+              </div>
+              <div class="dir-info">
+                <div class="dir-subject" set:html={d.subject}></div>
+                {d.names.map(n => (<div><div class="dir-name">{n.name}</div>{n.wych && <div class="dir-wych">Wychowawca klasy {n.wych}</div>}</div>))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div>
+          <div class="teachers-title">Kadra nauczycielska</div>
+        <div class="table-scroll">
+        <div class="table-wrap">
+
+          {teachers.map((row) => (
+            <div class="row row-teacher">
+              <div class="col-subject">{row.subject}</div>
+              <div class="col-names">
+                {row.names.map(({name, wych}) => (
+                  <div>
+                    <span class={wych ? 'name-wych' : ''}>{name}</span>
+                    {wych && <div class="wych-label">Wychowawca klasy {wych}</div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+
+        </div>{/* table-wrap */}
+        </div>{/* table-scroll */}
+        </div>{/* left col */}
+
+
+        </div>{/* kadra-grid */}
+      </div>{/* container */}
+    </section>
+  <script>
+  function fixPadding(){
+    const s=document.querySelector('section[style*="background:#f8f8f8"]');
+    if(s && window.innerWidth<=768){s.style.padding='3.5rem 1.25rem';}
+  }
+  fixPadding();
+  window.addEventListener('resize',fixPadding);
+</script>
+</main>
+  <Footer />
+</Layout>
+<style is:global>
+.sec{background:#f8f8f8;padding:5rem 2rem}
+.container{max-width:1400px;margin:0 auto;min-width:0}
+
+.table-scroll{overflow:auto;-webkit-overflow-scrolling:touch;border-radius:16px;border:none}
+.table-wrap{min-width:300px;border:1.5px solid #ebebeb;border-radius:16px;overflow:hidden}
+
+.row{display:grid;grid-template-columns:280px 1fr}
+.row-dir{background:#01214F;border-bottom:1px solid rgba(255,255,255,.1)}
+.row-dir-last{border-bottom:3px solid #E2A62D}
+.row-teacher{background:#fff;border-bottom:1px solid #f0f0f0;transition:background .2s}
+.row-teacher:last-child{border-bottom:none}
+.row-teacher:hover{background:#fafafa}
+
+.col-subject{padding:1rem 1.25rem;font-weight:700;font-size:.88rem;border-right:1px solid rgba(255,255,255,.1);display:flex;align-items:center}
+.row-dir .col-subject{color:#E2A62D;border-right-color:rgba(255,255,255,.1)}
+.row-teacher .col-subject{color:#01214F;border-right-color:#f0f0f0}
+
+.col-names{padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.5rem;justify-content:center}
+.col-names span{font-size:.87rem;color:#444}
+.row-dir .col-names span{color:rgba(255,255,255,.85)}
+.name-wych{font-weight:600}
+.wych-label{font-size:.72rem;color:#01214F;font-weight:600;margin-top:.1rem}
+.row-dir .wych-label{color:rgba(226,166,45,.85)}
+
+@media(max-width:640px){
+  .row{grid-template-columns:1fr}
+  .col-subject{border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
+  .row-teacher .col-subject{border-bottom-color:#f0f0f0}
+  }
+.dir-sidebar{display:flex;flex-direction:column;gap:.75rem;min-width:0;width:100%}
+.teachers-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#01214F;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1.5px solid #f0f0f0}
+.dir-card-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:#01214F;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1.5px solid #f0f0f0}
+.dir-card{background:#01214F;border-radius:20px;padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start;width:100%;box-sizing:border-box}
+.dir-icon-wrap{width:56px;height:56px;border-radius:14px;background:rgba(226,166,45,.15);border:1.5px solid rgba(226,166,45,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dir-subject{font-size:.72rem;color:#E2A62D;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.4rem;line-height:1.5}
+.dir-info{flex:1}
+
+.dir-name{font-size:1.1rem;font-weight:700;color:#fff}
+.dir-wych{font-size:.75rem;color:#E2A62D;margin-top:.25rem;font-weight:600}
+</style>

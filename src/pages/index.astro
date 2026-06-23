@@ -1,0 +1,227 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { PROFILES, NEWS } from '../data';
+import LogoBg from '../components/LogoBg.astro';
+---
+<Layout
+  title="MLO Słupsk – Młodzieżowe Liceum Ogólnokształcące w Słupsku"
+  description="Młodzieżowe Liceum Ogólnokształcące w Słupsku — szkoła z tradycją od 1997 roku. 7 profili klas, klasy mundurowe: policyjny, wojskowy, pożarniczy. Rekrutacja 2026/2027."
+  keywords="MLO Słupsk, liceum Słupsk, szkoła ponadpodstawowa Słupsk, klasy mundurowe Słupsk, klasa policyjna Słupsk, klasa wojskowa Słupsk, klasa pożarnicza Słupsk, rekrutacja liceum 2026 2027, Młodzieżowe Liceum Ogólnokształcące Słupsk"
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+
+    <!-- HERO -->
+    <section class="hero-split">
+      <div class="hero-left">
+        <div class="hero-bg-dots"></div>
+        <div class="hero-content">
+          <div class="gold-line anim-up">Młodzieżowe Liceum Ogólnokształcące w Słupsku</div>
+          <h1 class="display hero-h1 anim-up-1">Twoja szkoła.<br/><em class="hero-em">Twoje marzenia.</em></h1>
+          <p class="hero-lead anim-up-2">Od 1997 roku łączymy solidną edukację z klasami mundurowymi i artystycznymi. Twoja przyszłość zaczyna się tutaj — w Słupsku, w MLO.</p>
+          <div class="hero-btns anim-up-3">
+            <a href="/rekrutacja" class="btn-navy">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Sprawdź rekrutację
+            </a>
+            <a href="/profile" class="btn-outline">Profile klas →</a>
+          </div>
+          <div class="stats-row">
+            {[['1997','','Rok założenia'],['7','','Profili'],['3','','Klasy mundurowe'],['28','+','Lat']].map(([n,s,l],i)=>(
+              <div key={l} class="stat-item" style={i>0?'border-right:'+( i<3 ? '1.5px solid #f0f0f0' : 'none')+';padding-left:1.5rem':'border-right:1.5px solid #f0f0f0'}>
+                <div class="stat-num" data-target={n} data-suffix={s}>{n}{s}</div>
+                <div class="stat-label">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-right-dots"></div>
+        <LogoBg />
+        <div class="hero-right-inner">
+          <div class="hero-right-label">— Profile klas</div>
+          <div class="hero-profiles-grid">
+          {PROFILES.map(p=>(
+            <a href={`/profile/${p.slug}`} class="hero-profile-card">
+              <div class="hpc-icon" style={`background:rgba(255,255,255,.1);box-shadow:0 4px 12px ${p.color}30`}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={p.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={p.iconPath}></svg>
+              </div>
+              <div>
+                <div class="hpc-title" style={`color:${p.color}`}>{p.title}</div>
+                <div class="hpc-sub">{p.sub}</div>
+              </div>
+              {p.badge && <span class="hpc-badge">mundurowy</span>}
+            </a>
+          ))}
+          </div>
+          <a href="/profile" class="hero-all-profiles">Przeglądaj wszystkie profile →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker-bar" aria-hidden="true">
+      <div class="ticker-track">
+        {["MLO Słupsk","Szkoła z tradycją od 1997 roku","7 profili klas","Profil ogólny","Profil humanistyczny","Profil psychologiczny","Profil filmowo-aktorski","Profil policyjny","Profil wojskowy","Profil pożarniczy","Rekrutacja 2026/2027 jest otwarta","Słupsk, ul. Wojska Polskiego 46A","Twoja przyszłość w MLO","Zapisz się już dziś","MLO Słupsk","Szkoła z tradycją od 1997 roku","7 profili klas","Profil ogólny","Profil humanistyczny","Profil psychologiczny","Profil filmowo-aktorski","Profil policyjny","Profil wojskowy","Profil pożarniczy","Rekrutacja 2026/2027 jest otwarta","Słupsk, ul. Wojska Polskiego 46A","Twoja przyszłość w MLO","Zapisz się już dziś"].map((t,i)=>(
+          <span key={i} class={`ticker-item${t.includes("Rekrutacja") ? " ticker-gold" : ""}`}>{t} <span class="ticker-dot">★</span></span>
+        ))}
+      </div>
+    </div>
+
+    <!-- NEWS -->
+    <section class="sec" style="background:#f8f8f8">
+      <div class="wrap">
+        <div class="gold-line" style="margin-bottom:.75rem">Aktualności</div>
+        <h2 class="display sec-h2">Co nowego w szkole?</h2>
+        <div class="news-grid">
+          {NEWS.map((n,i)=>(
+            <article key={i} class={`news-card hover-card ${i===0?'news-big':''}`}>
+              <div class="news-meta">
+                <span class="news-cat">{n.cat}</span>
+                {n.hot && <span class="news-hot">Nowe ●</span>}
+                <span class="news-date">{n.date}</span>
+              </div>
+              <h3 class={`news-title ${i===0?'display':''}`}>{n.title}</h3>
+              <p class="news-body">{n.body}</p>
+              {n.link && <a href={n.link} class="news-more">Czytaj więcej →</a>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CTA Rekrutacja -->
+    <section class="sec cta-sec">
+      <div class="wrap cta-inner">
+        <div class="cta-left">
+          <div class="gold-line" style="margin-bottom:.75rem;color:#E2A62D">Rekrutacja 2026/2027</div>
+          <h2 class="display cta-h2">Gotowy na swój<br/><em style="color:#E2A62D;font-style:italic">kolejny krok?</em></h2>
+          <p class="cta-lead">Dołącz do MLO Słupsk — szkoły, która od 1997 roku zmienia życia i otwiera drzwi do kariery.</p>
+        </div>
+        <div class="cta-right">
+          <a href="/rekrutacja" class="btn-gold-big">→ Aplikuj teraz</a>
+          <a href="/kontakt" class="btn-outline-big">Skontaktuj się</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('[data-target]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting || entry.target.dataset.animated) return;
+        entry.target.dataset.animated = 'true';
+        const target = parseInt(entry.target.dataset.target);
+        const suffix = entry.target.dataset.suffix || '';
+        const duration = 1800;
+        const start = Date.now();
+        const tick = () => {
+          const elapsed = Date.now() - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          entry.target.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
+  });
+</script>
+
+<style>
+/* Hero */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;align-items:stretch;overflow:hidden;position:relative}
+.hero-left{position:relative;display:flex;align-items:center;background:#fff}
+.hero-bg-dots{position:absolute;inset:0;background-image:radial-gradient(#E2A62D0f 1.5px,transparent 1.5px);background-size:30px 30px;pointer-events:none}
+.hero-content{position:relative;z-index:1;padding:calc(0.75rem + 69px) 3rem 0.75rem 5rem}
+.hero-h1{font-size:clamp(3rem,5.5vw,5.2rem);font-weight:800;line-height:1.02;color:#01214F;margin-bottom:1.5rem}
+.hero-em{font-style:italic;font-weight:700;color:#01214F}
+.hero-lead{font-size:1.05rem;line-height:1.8;color:#666;max-width:500px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.stats-row{display:flex;border-top:1.5px solid #f0f0f0;padding-top:2rem}
+.stat-item{flex:1;padding-right:1.5rem;padding-left:1.5rem}
+.stat-num{font-size:2.2rem;font-weight:800;color:#01214F;line-height:1;font-family:'Playfair Display',serif}
+.stat-label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#767676;margin-top:.25rem}
+/* Hero right */
+.hero-right{background:#01214F;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hero-right-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(226,166,45,.1) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;z-index:0}
+
+.hero-right-inner{position:relative;z-index:1;padding:2.5rem}
+.hero-right-label{font-size:.67rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#E2A62D;margin-bottom:1.25rem}
+.hero-profiles-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.hero-profile-card{display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.25rem;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);text-decoration:none;transition:background .2s,border-color .2s;cursor:pointer;position:relative}
+.hero-profile-card:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
+.hpc-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hpc-title{font-size:1rem;font-weight:700;line-height:1.2;color:#fff}
+.hpc-sub{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.4}
+.hpc-badge{position:absolute;top:.6rem;right:.6rem;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(226,166,45,.18);color:#E2A62D;border:1px solid rgba(226,166,45,.35);padding:.2rem .55rem;border-radius:100px;white-space:nowrap}
+.hero-all-profiles{display:block;text-align:center;font-size:.78rem;color:rgba(226,166,45,.8);font-weight:600;padding:.75rem;border:1px solid rgba(226,166,45,.2);border-radius:10px;margin-top:.75rem;text-decoration:none;transition:all .2s}
+.hero-all-profiles:hover{background:rgba(226,166,45,.1);border-color:rgba(226,166,45,.4)}
+/* Ticker */
+.ticker-bar{background:#01214F;padding:.6rem 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;animation:slide 50s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{font-weight:600;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:#ffffff;padding:0 2.5rem}
+.ticker-gold{color:#E2A62D}
+.ticker-dot{color:#E2A62D}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* News */
+.news-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:1.5rem}
+.news-card{background:#fff;border-radius:16px;padding:1.5rem;border:1.5px solid #ebebeb;display:flex;flex-direction:column;gap:.75rem;transition:box-shadow .2s,transform .2s;cursor:pointer}
+.news-card:hover{box-shadow:0 8px 32px rgba(1,33,79,.08);transform:translateY(-2px)}
+.news-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.news-cat{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#01214F}
+.news-hot{font-size:.65rem;font-weight:700;color:#dc2626;letter-spacing:.05em}
+.news-date{font-size:.65rem;color:#767676;margin-left:auto}
+.news-title{font-size:1rem;font-weight:700;color:#01214F;line-height:1.3}
+.news-big .news-title{font-size:1.4rem}
+.news-body{font-size:.85rem;color:#767676;line-height:1.6;flex:1}
+
+/* Responsive */
+@media(max-width:1024px){
+  .hero-split{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-content{padding:calc(2rem + 58px) 1.5rem 3rem}
+  .news-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero-content{padding:calc(1.5rem + 58px) 1.25rem 2.5rem}
+  .stat-item{padding-left:0}
+  .news-grid{grid-template-columns:1fr}
+  .stats-row{gap:.5rem}
+  .stat-num{font-size:1.6rem}
+}
+.sec{padding:5rem 2rem}
+.sec-h2{font-size:clamp(1.8rem,3vw,3rem);color:#01214F;font-weight:800;margin-bottom:2rem}
+.wrap{max-width:1400px;margin:0 auto}
+@media(max-width:768px){.sec{padding:3.5rem 1.25rem}}
+.cta-sec{background:linear-gradient(135deg,#01214F,#1a3570);position:relative;overflow:hidden}
+
+.cta-sec::before{content:'';position:absolute;inset:0;background-image:url('/dokumenty/pattern-stonowana.svg');background-size:65% auto;background-repeat:repeat;opacity:.08;pointer-events:none}
+.cta-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;position:relative}
+.cta-h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:1rem}
+.cta-lead{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:500px}
+.cta-right{display:flex;flex-direction:column;gap:1rem;min-width:200px}
+.btn-gold-big{display:block;background:#E2A62D;color:#fff;text-align:center;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;transition:opacity .2s}
+.btn-gold-big:hover{opacity:.88}
+.btn-navy{display:inline-flex;align-items:center;gap:8px;background:#E2A62D;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:1rem 2rem;border-radius:12px;border:none;transition:all .2s;box-shadow:0 4px 16px rgba(226,166,45,.3)}
+.btn-navy:hover{opacity:.88;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#01214F;border:1.5px solid #e0e0e0;text-decoration:none;font-weight:600;font-size:.9rem;padding:1rem 2rem;border-radius:12px;transition:all .2s}
+.btn-outline:hover{border-color:#01214F;transform:translateY(-2px)}
+.btn-outline-big{display:block;background:transparent;color:#fff;text-align:center;padding:.9rem 2rem;border-radius:12px;font-weight:600;font-size:.9rem;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);transition:border-color .2s}
+.btn-outline-big:hover{border-color:rgba(255,255,255,.7)}
+@media(max-width:768px){.cta-inner{grid-template-columns:1fr}.cta-right{flex-direction:row;flex-wrap:wrap}}
+@media(max-width:768px){.cta-sec::before{background-size:130% auto}}
+.news-more{display:inline-block;margin-top:.75rem;font-size:.8rem;font-weight:700;color:#01214F;text-decoration:none}
+.news-more:hover{text-decoration:underline}
+</style>

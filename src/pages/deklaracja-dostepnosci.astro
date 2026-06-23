@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<Layout title="Deklaracja dostępności" description="Deklaracja dostępności cyfrowej strony mlo.slupsk.pl">
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      breadcrumbs={[{label:'Start',href:'/'},{label:'Deklaracja dostępności'}]}
+      label="Informacje prawne"
+      title="Deklaracja dostępności"
+      sub="Dostępność cyfrowa strony mlo.slupsk.pl"
+    />
+    <section class="sec">
+      <div class="container">
+        <div class="container">
+
+          <div class="info-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Data publikacji: <strong>15 czerwca 2026 r.</strong> Ostatni przegląd: <strong>15 czerwca 2026 r.</strong></span>
+          </div>
+
+          <div class="status-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" style="flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Strona <strong>mlo.slupsk.pl</strong> jest <strong>częściowo zgodna</strong> ze standardem WCAG 2.1 na poziomie AA.</span>
+          </div>
+
+          <div class="card">
+            <h2>1. Wstęp</h2>
+            <p>Młodzieżowe Liceum Ogólnokształcące w Słupsku zobowiązuje się zapewnić dostępność swojej strony internetowej zgodnie z ustawą z dnia 4 kwietnia 2019 r. o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych (Dz.U. 2019 poz. 848).</p>
+          </div>
+
+          <div class="card">
+            <h2>2. Status dostępności</h2>
+            <ul>
+              <li>Data publikacji strony: 1 września 2025 r.</li>
+              <li>Data ostatniego przeglądu: 15 czerwca 2026 r.</li>
+              <li>Status: Częściowa zgodność z WCAG 2.1 poziom AA</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>3. Elementy zgodne z WCAG 2.1 AA</h2>
+            <ul>
+              <li>Link „Przejdź do treści głównej" widoczny po Tab</li>
+              <li>Widoczny fokus przy nawigacji klawiaturą</li>
+              <li>Obrazy dekoracyjne mają alt pusty lub aria-hidden</li>
+              <li>Nagłówki tworzą logiczną hierarchię H1→H2→H3</li>
+              <li>Kontrast tekstu głównego spełnia wymóg 4.5:1</li>
+              <li>Hamburger ma aria-label i aria-expanded</li>
+              <li>Tabela kadry ma nagłówki z atrybutem scope</li>
+              <li>Obsługa prefers-reduced-motion</li>
+              <li>Strona działa poprawnie z natywnym powiększeniem przeglądarki (Ctrl+/−) oraz systemowymi narzędziami dostępności (np. Narrator, VoiceOver, TalkBack)</li>
+              <li>Strona działa jako PWA — można ją zainstalować na ekranie głównym telefonu lub komputera bezpośrednio z przeglądarki, bez sklepów z aplikacjami</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>4. Znane ograniczenia</h2>
+            <ul>
+              <li>Galeria: zdjęcia historyczne mogą nie mieć szczegółowych opisów</li>
+              <li>Pliki do pobrania mogą nie być w pełni dostępne dla czytników ekranu</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>5. Kontakt w sprawie dostępności</h2>
+            <ul>
+              <li>Adres: ul. Wojska Polskiego 46A, 76-200 Słupsk</li>
+              <li>Telefon: +48 786 933 376 | +48 505 525 119</li>
+              <li>E-mail: <a href="mailto:liceum.nauka@wp.pl">liceum.nauka@wp.pl</a></li>
+              <li>Sekretariat: Pn–Pt 9:00–14:00</li>
+              <li>Czas odpowiedzi: do 7 dni roboczych</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>6. Procedura odwoławcza</h2>
+            <p>Każdy ma prawo żądania zapewnienia dostępności cyfrowej strony lub jej elementu. Jeżeli odpowiedź jest niezadowalająca, można złożyć skargę do Rzecznika Praw Obywatelskich: <a href="https://www.rpo.gov.pl" target="_blank" rel="noopener">www.rpo.gov.pl</a></p>
+          </div>
+
+          <div class="card">
+            <h2>7. Dostępność architektoniczna</h2>
+            <ul>
+              <li>Podjazd dla wózków inwalidzkich</li>
+              <li>Parking z miejscami dla osób z niepełnosprawnościami</li>
+              <li>Winda wewnętrzna</li>
+              <li>Toalety przystosowane dla osób z niepełnosprawnościami</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>8. Podstawa prawna</h2>
+            <p>Ustawa z dnia 4 kwietnia 2019 r. o dostępności cyfrowej stron internetowych i aplikacji mobilnych podmiotów publicznych (Dz.U. 2019 poz. 848) oraz Dyrektywa UE 2016/2102.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.sec{background:#f8f8f8;padding:5rem 2rem}
+@media(max-width:768px){.sec{padding:3.5rem 1.25rem}}
+.container{max-width:1400px;margin:0 auto}
+
+.info-bar{display:flex;align-items:center;gap:10px;background:#fff3e0;border:1.5px solid #E2A62D33;border-radius:12px;padding:1rem 1.5rem;margin-bottom:.75rem;font-size:.88rem;color:#555;line-height:1.6}
+.status-bar{display:flex;align-items:center;gap:10px;background:#f0fdf4;border:1.5px solid #a7f3d0;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:.88rem;color:#065f46;line-height:1.6}
+.card{background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:2rem;margin-bottom:1.25rem}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:#01214F;margin-bottom:.85rem;padding-bottom:.75rem;border-bottom:1.5px solid #f0f0f0}
+.card p{font-size:.93rem;line-height:1.8;color:#555;margin-bottom:.25rem}
+.card ul{list-style:none;padding:0;margin:.5rem 0 0;display:flex;flex-direction:column;gap:.55rem}
+.card ul li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;line-height:1.8;color:#555}
+.card ul li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#E2A62D;flex-shrink:0;margin-top:.62rem}
+.card a{color:#01214F;font-weight:600;text-decoration:none}
+.card a:hover{text-decoration:none;opacity:.8}
+</style>

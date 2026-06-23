@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<Layout
+  title="Strona nie znaleziona"
+  keywords="MLO Słupsk, liceum Słupsk, strona nie znaleziona"
+  description="Strona nie istnieje. Wróć na stronę główną MLO Słupsk."
+  noIndex={true}
+>
+  <Navbar />
+  <main id="main-content" tabindex="-1">
+    <PageHeader
+      label="Błąd 404"
+      title="Strony nie ma"
+      sub="Strona której szukasz nie istnieje lub została przeniesiona."
+    />
+
+    <section style="background:#f8f8f8;padding:4rem 2rem">
+      <div style="text-align:center;max-width:600px;margin:0 auto">
+
+        <p style="font-size:1rem;color:#767676;line-height:1.8;margin-bottom:2.5rem">
+          Sprawdź adres URL lub wróć na stronę główną.
+        </p>
+
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem">
+          <a href="/" class="btn-404-primary">← Strona główna</a>
+          <a href="/kontakt" class="btn-404-outline">Kontakt</a>
+        </div>
+
+        <div style="padding-top:2rem;border-top:1.5px solid #ebebeb">
+          <p style="font-size:.8rem;color:#767676;margin-bottom:1rem">Może szukasz:</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center">
+            {[
+              {label:"Profile klas", href:"/profile"},
+              {label:"Rekrutacja", href:"/rekrutacja"},
+              {label:"Matura", href:"/matura"},
+              {label:"Podręczniki", href:"/podreczniki"},
+            ].map(l => (
+              <a href={l.href} class="btn-404-tag">{l.label}</a>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.btn-404-primary{display:inline-flex;align-items:center;gap:8px;background:#01214F;color:#fff;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 16px rgba(1,33,79,.2);transition:opacity .2s}
+.btn-404-primary:hover{opacity:.82}
+.btn-404-outline{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#01214F;padding:1rem 2rem;border-radius:12px;font-weight:600;font-size:.9rem;text-decoration:none;border:1.5px solid #e0e0e0;transition:border-color .2s}
+.btn-404-outline:hover{border-color:#01214F}
+.btn-404-tag{font-size:.82rem;color:#01214F;font-weight:600;text-decoration:none;padding:.35rem .85rem;border:1.5px solid #01214F33;border-radius:100px;background:#fff3e0;transition:all .2s}
+.btn-404-tag:hover{background:#01214F;color:#fff}
+</style>

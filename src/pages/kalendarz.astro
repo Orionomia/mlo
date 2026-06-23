@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+<Layout title="Kalendarz szkolny" description="Kalendarz roku szkolnego 2025/2026 w MLO Słupsk. Ferie zimowe, przerwy świąteczne, zakończenie roku i terminy egzaminów maturalnych." keywords="kalendarz szkolny MLO Słupsk, ferie 2025 2026, przerwy świąteczne liceum Słupsk, matura termin 2026">
+  <Navbar />
+  <main>
+    <PageHeader
+      breadcrumbs={[{'label':'Start','href':'/'},{'label':'Kalendarz'}]} label="Kalendarz szkolny" title="Rok szkolny 2025/2026" sub="Wszystkie ważne daty roku szkolnego — przerwy, ferie, egzaminy i zakończenie roku." />
+    <section class="sec">
+      <div class="container">
+        <div class="info-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E2A62D" stroke-width="2" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Rok szkolny 2025/2026
+        </div>
+
+        <div class="kal-grid">
+        <div class="cal-table">
+          {[
+            { date: "1 września 2025",             event: "Rozpoczęcie zajęć dydaktyczno-wychowawczych",                                           type: "start" },
+            { date: "22 – 31 grudnia 2025",         event: "Zimowa przerwa świąteczna",                                                             type: "break" },
+            { date: "19 stycznia – 1 lutego 2026",  event: "Ferie zimowe",                                                                          type: "holiday" },
+            { date: "2 – 7 kwietnia 2026",          event: "Wiosenna przerwa świąteczna",                                                            type: "break" },
+            { date: "24 kwietnia 2026",             event: "Zakończenie zajęć w klasach programowo najwyższych",                                     type: "end" },
+            { date: "Termin MEN",                   event: "Egzamin maturalny — termin ustala dyrektor Centralnej Komisji Egzaminacyjnej",           type: "exam" },
+            { date: "26 czerwca 2026",              event: "Zakończenie zajęć dydaktyczno-wychowawczych",                                            type: "end" },
+            { date: "27 czerwca – 31 sierpnia 2026",event: "Ferie letnie",                                                                           type: "holiday" },
+          ].map((row) => (
+            <div class={`cal-row cal-row--${row.type}`}>
+              <div class="cal-date">{row.date}</div>
+              <div class="cal-event">{row.event}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Oś czasu -->
+        <div class="timeline">
+          <div class="tl-title">Kluczowe daty roku szkolnego</div>
+          <div class="tl-items">
+            <div class="tl-item tl-past">
+              <div class="tl-dot"></div>
+              <div>
+                <div class="tl-date">1 września 2025</div>
+                <div class="tl-event">Rozpoczęcie roku szkolnego</div>
+              </div>
+            </div>
+            <div class="tl-item tl-past">
+              <div class="tl-dot"></div>
+              <div>
+                <div class="tl-date">24 stycznia – 1 lutego 2026</div>
+                <div class="tl-event">Ferie zimowe</div>
+              </div>
+            </div>
+            <div class="tl-item tl-current">
+              <div class="tl-dot"></div>
+              <div>
+                <div class="tl-date">4–21 maja 2026</div>
+                <div class="tl-event">Egzaminy maturalne</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div>
+                <div class="tl-date">26 czerwca 2026</div>
+                <div class="tl-event">Zakończenie roku szkolnego</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div>
+                <div class="tl-date">27 czerwca – 31 sierpnia 2026</div>
+                <div class="tl-event">Wakacje letnie</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+<style is:global>
+.sec{background:#f8f8f8;padding:5rem 2rem}
+.container{max-width:1400px;margin:0 auto}
+
+.info-box{display:flex;align-items:center;gap:10px;background:#fff3e0;border:1.5px solid #E2A62D33;border-radius:12px;padding:.85rem 1.5rem;margin-bottom:3rem;font-weight:700;font-size:.95rem;color:#01214F;width:100%}
+.cal-table{display:flex;flex-direction:column;gap:1px;border-radius:16px;overflow:hidden;border:1.5px solid #ebebeb}
+.cal-row{display:grid;grid-template-columns:260px 1fr;background:#fff;transition:background .2s}
+.cal-row:hover{background:#fafafa}
+.cal-date{padding:1.25rem 1.5rem;font-weight:700;font-size:.9rem;color:#01214F;border-right:1.5px solid #f0f0f0;display:flex;align-items:center}
+.cal-event{padding:1.25rem 1.5rem;font-size:.9rem;color:#444;display:flex;align-items:center;line-height:1.5}
+.cal-row--start .cal-date{color:#047857}
+.cal-row--end .cal-date{color:#01214F}
+.cal-row--holiday{background:#f0fdf4}
+.cal-row--holiday .cal-date{color:#047857}
+.cal-row--break{background:#fff8ee}
+.cal-row--break .cal-date{color:#b45309}
+.cal-row--exam{background:#fef2f2}
+.cal-row--exam .cal-date{color:#dc2626;font-size:.82rem}
+@media(max-width:600px){.cal-row{grid-template-columns:1fr}.cal-date{border-right:none;border-bottom:1.5px solid #f0f0f0;padding:.85rem 1.25rem}.cal-event{padding:.85rem 1.25rem}.sec{padding:3.5rem 1.25rem}}
+
+
+@media print{}
+.kal-grid{display:grid;grid-template-columns:1fr 320px;gap:3rem;align-items:stretch}
+@media(max-width:1024px){.kal-grid{grid-template-columns:1fr}}
+.timeline{background:#fff;border:1.5px solid #ebebeb;border-radius:16px;padding:2rem;overflow:hidden;height:100%}
+.tl-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:800;color:#01214F;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1.5px solid #f0f0f0}
+.tl-items{display:flex;flex-direction:column;gap:0;position:relative}
+.tl-items::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:#f0f0f0;border-radius:1px}
+.tl-item{display:flex;gap:1rem;align-items:flex-start;padding:.85rem 0;position:relative}
+.tl-dot{width:16px;height:16px;border-radius:50%;border:2px solid #e0e0e0;background:#fff;flex-shrink:0;margin-top:2px;position:relative;z-index:1;transition:all .2s}
+.tl-current .tl-dot{background:#E2A62D;border-color:#E2A62D;box-shadow:0 0 0 4px rgba(226,166,45,.15)}
+.tl-past .tl-dot{background:#01214F;border-color:#01214F}
+.tl-date{font-size:.75rem;color:#E2A62D;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem}
+.tl-current .tl-date{color:#E2A62D}
+.tl-past .tl-date{color:#767676}
+.tl-event{font-size:.88rem;color:#01214F;font-weight:600;line-height:1.4}
+.tl-past .tl-event{color:#767676}
+</style>
